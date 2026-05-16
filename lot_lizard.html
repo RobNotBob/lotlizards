@@ -1339,231 +1339,231 @@ const CARS = [
 
   // ══ TIER 0 — STARTING LOT  (late 1980s–early 2000s) ═══════════════
 
-  { id:'corolla94',   tier:0, name:"1994 Toyota Corolla",
+  { id:'corolla94', carType:'economy',   tier:0, name:"1994 Toyota Corolla",
     price:1200,  priceStr:"$1,200",  condition:3, emoji:"🚗",
     tags:['reliable','cheap','boring','compact','japanese'],
     rep:"Bulletproof. Beige. Will outlive everyone you love." },
 
-  { id:'explorer98',  tier:0, name:"1998 Ford Explorer",
+  { id:'explorer98', carType:'suv',  tier:0, name:"1998 Ford Explorer",
     price:2100,  priceStr:"$2,100",  condition:2, emoji:"🚙",
     tags:['suv','roomy','risky','american'],
     rep:"An adventure vehicle. The adventure is keeping it upright." },
 
-  { id:'civic01',     tier:0, name:"2001 Honda Civic",
+  { id:'civic01', carType:'compact',     tier:0, name:"2001 Honda Civic",
     price:1800,  priceStr:"$1,800",  condition:3, emoji:"🚘",
     tags:['reliable','sporty','cult','compact','japanese'],
     rep:"Mysterious past. The spoiler is load-bearing, apparently." },
 
-  { id:'neon99',      tier:0, name:"1999 Dodge Neon",
+  { id:'neon99', carType:'economy',      tier:0, name:"1999 Dodge Neon",
     price:650,   priceStr:"$650",    condition:2, emoji:"🚗",
     tags:['cheap','quirky','fragile','american'],
     rep:"One mismatched door. Calls it character. We agree." },
 
-  { id:'silverado03', tier:0, name:"2003 Chevy Silverado",
+  { id:'silverado03', carType:'truck', tier:0, name:"2003 Chevy Silverado",
     price:3400,  priceStr:"$3,400",  condition:3, emoji:"🛻",
     tags:['truck','tough','american','roomy'],
     rep:"Dented, loyal, smells like ambition and hay." },
 
-  { id:'bmw97',       tier:0, name:"1997 BMW 3 Series",
+  { id:'bmw97', carType:'luxury',       tier:0, name:"1997 BMW 3 Series",
     price:2800,  priceStr:"$2,800",  condition:2, emoji:"🚘",
     tags:['prestige','fragile','cool','euro','german'],
     rep:"Looks like a million bucks. Costs that in repairs." },
 
-  { id:'outback02',   tier:0, name:"2002 Subaru Outback",
+  { id:'outback02', carType:'suv',   tier:0, name:"2002 Subaru Outback",
     price:2200,  priceStr:"$2,200",  condition:3, emoji:"🚙",
     tags:['outdoorsy','reliable','quirky','offroad','japanese'],
     rep:"The scratches are from Moab. Probably." },
 
-  { id:'firebird95',  tier:0, name:"1995 Pontiac Firebird",
+  { id:'firebird95', carType:'sports',  tier:0, name:"1995 Pontiac Firebird",
     price:2600,  priceStr:"$2,600",  condition:2, emoji:"🚗",
     tags:['fast','loud','cool','thirsty','american'],
     rep:"V8, loud, thirsty. Basically a rocket with an AM radio." },
 
-  { id:'odyssey99',   tier:0, name:"1999 Honda Odyssey",
+  { id:'odyssey99', carType:'minivan',   tier:0, name:"1999 Honda Odyssey",
     price:2400,  priceStr:"$2,400",  condition:3, emoji:"🚐",
     tags:['minivan','practical','reliable','roomy','japanese'],
     rep:"Seating for eight. Hope for six. Crumbs for all of them." },
 
-  { id:'taurus00',    tier:0, name:"2000 Ford Taurus",
+  { id:'taurus00', carType:'midsize',    tier:0, name:"2000 Ford Taurus",
     price:1400,  priceStr:"$1,400",  condition:3, emoji:"🚗",
     tags:['reliable','boring','practical','american'],
     rep:"The car of airports, rentals, and quiet acceptance." },
 
-  { id:'cherokee96',  tier:0, name:"1996 Jeep Cherokee XJ",
+  { id:'cherokee96', carType:'suv',  tier:0, name:"1996 Jeep Cherokee XJ",
     price:2900,  priceStr:"$2,900",  condition:2, emoji:"🚙",
     tags:['outdoorsy','offroad','cult','risky','american'],
     rep:"Cult classic. Leaks something, somewhere. Always." },
 
-  { id:'lesabre01',   tier:0, name:"2001 Buick LeSabre",
+  { id:'lesabre01', carType:'luxury',   tier:0, name:"2001 Buick LeSabre",
     price:2600,  priceStr:"$2,600",  condition:3, emoji:"🚗",
     tags:['comfort','luxury','american','boring'],
     rep:"The official vehicle of the early bird special. Immaculate interior." },
 
-  { id:'v70_98',      tier:0, name:"1998 Volvo V70",
+  { id:'v70_98', carType:'wagon',      tier:0, name:"1998 Volvo V70",
     price:2300,  priceStr:"$2,300",  condition:3, emoji:"🚙",
     tags:['safe','reliable','euro','practical','swedish'],
     rep:"Swedish safety wrapped in wood trim. It has standards." },
 
-  { id:'rx7_93',      tier:0, veteranOnly:true, name:"1993 Mazda RX-7",
+  { id:'rx7_93', carType:'sports',      tier:0, veteranOnly:true, name:"1993 Mazda RX-7",
     price:9800,  priceStr:"$9,800",  condition:3, emoji:"🚗",
     tags:['fast','rare','cult','fragile','fun','japanese'],
     rep:"Rotary perfection. Drinks oil like a sailor. Handles like a rumor about physics." },
 
-  { id:'560sl_89',    tier:0, veteranOnly:true, name:"1989 Mercedes 560SL",
+  { id:'560sl_89', carType:'luxury',    tier:0, veteranOnly:true, name:"1989 Mercedes 560SL",
     price:14500, priceStr:"$14,500", condition:3, emoji:"🚘",
     tags:['prestige','rare','euro','luxury','cool','german'],
     rep:"German grandeur. The previous owner wore a blazer to the grocery store." },
 
   // ══ TIER 1 — INVENTORY QUALITY UPGRADE 1  (2003–2010) ══════════════
 
-  { id:'camry04',     tier:1, name:"2004 Toyota Camry",
+  { id:'camry04', carType:'midsize',     tier:1, name:"2004 Toyota Camry",
     price:4800,  priceStr:"$4,800",  condition:4, emoji:"🚗",
     tags:['reliable','boring','comfort','practical','japanese'],
     rep:"The apex predator of the used car market. Hunts sensibly." },
 
-  { id:'accord05',    tier:1, name:"2005 Honda Accord",
+  { id:'accord05', carType:'midsize',    tier:1, name:"2005 Honda Accord",
     price:5200,  priceStr:"$5,200",  condition:4, emoji:"🚘",
     tags:['reliable','practical','cult','comfort','japanese'],
     rep:"200,000 miles and still smug about it. Comes with a binder of every receipt." },
 
-  { id:'f150_06',     tier:1, name:"2006 Ford F-150",
+  { id:'f150_06', carType:'truck',     tier:1, name:"2006 Ford F-150",
     price:7500,  priceStr:"$7,500",  condition:4, emoji:"🛻",
     tags:['truck','tough','american','roomy','practical'],
     rep:"Best-selling vehicle in America for forty years. It has hauled things. It does not discuss this." },
 
-  { id:'wrangler04',  tier:1, name:"2004 Jeep Wrangler",
+  { id:'wrangler04', carType:'suv',  tier:1, name:"2004 Jeep Wrangler",
     price:8200,  priceStr:"$8,200",  condition:3, emoji:"🚙",
     tags:['outdoorsy','offroad','cult','fun','risky','american'],
     rep:"Leaks when it rains. The owners consider this a feature, not a flaw." },
 
-  { id:'beetle03',    tier:1, name:"2003 Volkswagen Beetle",
+  { id:'beetle03', carType:'compact',    tier:1, name:"2003 Volkswagen Beetle",
     price:3800,  priceStr:"$3,800",  condition:3, emoji:"🚗",
     tags:['quirky','fun','euro','compact','cool','german'],
     rep:"Round, cheerful, faintly German. The dashboard flower vase is still occupied." },
 
-  { id:'eclipse05',   tier:1, name:"2005 Mitsubishi Eclipse",
+  { id:'eclipse05', carType:'sports',   tier:1, name:"2005 Mitsubishi Eclipse",
     price:4600,  priceStr:"$4,600",  condition:3, emoji:"🚘",
     tags:['sporty','cool','fast','cult','japanese'],
     rep:"The poster car from everyone's teenage bedroom. Has lived up to that energy." },
 
-  { id:'optima07',    tier:1, name:"2007 Kia Optima",
+  { id:'optima07', carType:'compact',    tier:1, name:"2007 Kia Optima",
     price:3900,  priceStr:"$3,900",  condition:4, emoji:"🚗",
     tags:['reliable','cheap','practical','korean'],
     rep:"Underdog era Kia. People underestimated it. It noticed. It moved on." },
 
-  { id:'deville04',   tier:1, name:"2004 Cadillac DeVille",
+  { id:'deville04', carType:'luxury',   tier:1, name:"2004 Cadillac DeVille",
     price:6200,  priceStr:"$6,200",  condition:3, emoji:"🚘",
     tags:['luxury','comfort','american','prestige','boring'],
     rep:"Church, Costco, and the occasional funeral. All attended with equal solemnity." },
 
-  { id:'s60_06',      tier:1, name:"2006 Volvo S60",
+  { id:'s60_06', carType:'luxury',      tier:1, name:"2006 Volvo S60",
     price:5600,  priceStr:"$5,600",  condition:4, emoji:"🚘",
     tags:['safe','reliable','euro','practical','swedish'],
     rep:"Seven airbags and a quiet sense of moral superiority over every other car on the road." },
 
-  { id:'altima03',    tier:1, name:"2003 Nissan Altima",
+  { id:'altima03', carType:'midsize',    tier:1, name:"2003 Nissan Altima",
     price:4200,  priceStr:"$4,200",  condition:4, emoji:"🚗",
     tags:['reliable','practical','cheap','boring','japanese'],
     rep:"Not exciting. Not boring. Aggressively adequate in the finest tradition." },
 
-  { id:'sienna05',    tier:1, name:"2005 Toyota Sienna",
+  { id:'sienna05', carType:'minivan',    tier:1, name:"2005 Toyota Sienna",
     price:5800,  priceStr:"$5,800",  condition:4, emoji:"🚐",
     tags:['minivan','reliable','practical','roomy','japanese'],
     rep:"The minivan that does not apologize for being a minivan. Good." },
 
-  { id:'crv08',       tier:1, name:"2008 Honda CR-V",
+  { id:'crv08', carType:'suv',       tier:1, name:"2008 Honda CR-V",
     price:7200,  priceStr:"$7,200",  condition:4, emoji:"🚙",
     tags:['suv','reliable','practical','compact','japanese'],
     rep:"The sensible SUV. Every dentist's second car. Beloved for good reason." },
 
-  { id:'g6_06',       tier:1, name:"2006 Pontiac G6",
+  { id:'g6_06', carType:'midsize',       tier:1, name:"2006 Pontiac G6",
     price:4100,  priceStr:"$4,100",  condition:4, emoji:"🚗",
     tags:['american','practical','boring','reliable'],
     rep:"GM's last stand at relevance. More dignity than it was given credit for." },
 
-  { id:'s2000_03',    tier:1, veteranOnly:true, name:"2003 Honda S2000",
+  { id:'s2000_03', carType:'sports',    tier:1, veteranOnly:true, name:"2003 Honda S2000",
     price:12800, priceStr:"$12,800", condition:4, emoji:"🚗",
     tags:['fast','fun','rare','cult','sporty','japanese'],
     rep:"High-revving perfection. Rewards skill. Punishes ego. Redlines at 9,000 RPM." },
 
-  { id:'xlr04',       tier:1, veteranOnly:true, name:"2004 Cadillac XLR",
+  { id:'xlr04', carType:'luxury',       tier:1, veteranOnly:true, name:"2004 Cadillac XLR",
     price:18500, priceStr:"$18,500", condition:4, emoji:"🚘",
     tags:['luxury','rare','prestige','american','cool'],
     rep:"Cadillac built a sports car. It appreciates you acknowledging that." },
 
   // ══ TIER 2 — INVENTORY QUALITY UPGRADE 2  (2010–2017) ══════════════
 
-  { id:'camry12',     tier:2, name:"2012 Toyota Camry",
+  { id:'camry12', carType:'midsize',     tier:2, name:"2012 Toyota Camry",
     price:10500, priceStr:"$10,500", condition:5, emoji:"🚗",
     tags:['reliable','comfort','practical','boring','japanese'],
     rep:"Still invisible. Still perfect. Now with a slightly less beige interior." },
 
-  { id:'civic13',     tier:2, name:"2013 Honda Civic",
+  { id:'civic13', carType:'compact',     tier:2, name:"2013 Honda Civic",
     price:9800,  priceStr:"$9,800",  condition:5, emoji:"🚘",
     tags:['reliable','compact','practical','sporty','japanese'],
     rep:"Divisive styling, bulletproof mechanicals. The haters are still driving." },
 
-  { id:'f150_14',     tier:2, name:"2014 Ford F-150",
+  { id:'f150_14', carType:'truck',     tier:2, name:"2014 Ford F-150",
     price:16500, priceStr:"$16,500", condition:5, emoji:"🛻",
     tags:['truck','tough','american','practical','roomy'],
     rep:"Aluminum body. Controversial at launch. Vindicated by time. The haters went quiet." },
 
-  { id:'wagoneer11',  tier:2, name:"2011 Jeep Grand Wagoneer",
+  { id:'wagoneer11', carType:'suv',  tier:2, name:"2011 Jeep Grand Wagoneer",
     price:14200, priceStr:"$14,200", condition:4, emoji:"🚙",
     tags:['suv','luxury','offroad','roomy','american','thirsty'],
     rep:"Premium SUV with genuine capability and genuine thirst. It knows it drinks premium." },
 
-  { id:'hummer10',    tier:2, name:"2010 Hummer H2",
+  { id:'hummer10', carType:'suv',    tier:2, name:"2010 Hummer H2",
     price:21000, priceStr:"$21,000", condition:4, emoji:"🚙",
     tags:['loud','american','tough','thirsty','cool','rare'],
     rep:"Ten miles per gallon. The driver has made peace with this. The planet has not." },
 
-  { id:'c300_13',     tier:2, name:"2013 Mercedes C300",
+  { id:'c300_13', carType:'luxury',     tier:2, name:"2013 Mercedes C300",
     price:17800, priceStr:"$17,800", condition:5, emoji:"🚘",
     tags:['prestige','luxury','euro','cool','reliable','german'],
     rep:"Entry luxury that knows it is entry luxury and is completely fine with that." },
 
-  { id:'lacrosse11',  tier:2, name:"2011 Buick LaCrosse",
+  { id:'lacrosse11', carType:'luxury',  tier:2, name:"2011 Buick LaCrosse",
     price:11200, priceStr:"$11,200", condition:5, emoji:"🚘",
     tags:['comfort','luxury','american','practical','boring'],
     rep:"Drives like a moving suggestion. The heated seats have a fan club." },
 
-  { id:'forester14',  tier:2, name:"2014 Subaru Forester",
+  { id:'forester14', carType:'suv',  tier:2, name:"2014 Subaru Forester",
     price:12400, priceStr:"$12,400", condition:5, emoji:"🚙",
     tags:['outdoorsy','reliable','offroad','practical','japanese'],
     rep:"Three previous owners. All had dogs. All had opinions about national parks." },
 
-  { id:'odyssey12',   tier:2, name:"2012 Honda Odyssey",
+  { id:'odyssey12', carType:'minivan',   tier:2, name:"2012 Honda Odyssey",
     price:13600, priceStr:"$13,600", condition:5, emoji:"🚐",
     tags:['minivan','reliable','practical','roomy','japanese'],
     rep:"The evolved form. Built-in vacuum. No further questions needed." },
 
-  { id:'optima15',    tier:2, name:"2015 Kia Optima",
+  { id:'optima15', carType:'midsize',    tier:2, name:"2015 Kia Optima",
     price:11800, priceStr:"$11,800", condition:5, emoji:"🚗",
     tags:['reliable','sporty','practical','korean'],
     rep:"Glow-up era Kia. Stinger energy at Optima money. Deserves more respect." },
 
-  { id:'jetta13',     tier:2, name:"2013 Volkswagen Jetta",
+  { id:'jetta13', carType:'compact',     tier:2, name:"2013 Volkswagen Jetta",
     price:9600,  priceStr:"$9,600",  condition:5, emoji:"🚗",
     tags:['euro','practical','compact','reliable','german'],
     rep:"European precision at a price that implies one or two compromises." },
 
-  { id:'tacoma16',    tier:2, name:"2016 Toyota Tacoma",
+  { id:'tacoma16', carType:'truck',    tier:2, name:"2016 Toyota Tacoma",
     price:22500, priceStr:"$22,500", condition:5, emoji:"🛻",
     tags:['truck','reliable','outdoorsy','offroad','japanese'],
     rep:"Holds its value better than your 401k. Depreciates approximately never." },
 
-  { id:'townco14',    tier:2, name:"2014 Chrysler Town & Country",
+  { id:'townco14', carType:'minivan',    tier:2, name:"2014 Chrysler Town & Country",
     price:14200, priceStr:"$14,200", condition:5, emoji:"🚐",
     tags:['minivan','practical','american','roomy','comfort'],
     rep:"Stow-n-go seating. Lost cheerios. The full American family experience." },
 
-  { id:'mustang15',   tier:2, veteranOnly:true, name:"2015 Ford Mustang GT",
+  { id:'mustang15', carType:'sports',   tier:2, veteranOnly:true, name:"2015 Ford Mustang GT",
     price:24500, priceStr:"$24,500", condition:5, emoji:"🚗",
     tags:['fast','american','loud','cool','sporty'],
     rep:"The pony car. Parking lot magnet. Makes a sound that ends conversations." },
 
-  { id:'m5_12',       tier:2, veteranOnly:true, name:"2012 BMW M5",
+  { id:'m5_12', carType:'luxury',       tier:2, veteranOnly:true, name:"2012 BMW M5",
     price:32000, priceStr:"$32,000", condition:5, emoji:"🚘",
     tags:['prestige','fast','euro','rare','luxury','german'],
     rep:"The greatest sports sedan argument. BMW people will tell you unprompted." },
@@ -2265,7 +2265,7 @@ function freshState() {
     lastStatDeltas: { charm:0, honesty:0, closing:0 },
     perks: { charmer:0, shooter:0, closer:0 },
     perkPointsRaw: 0,
-    lotInventory: null   // null = use tier filter (legacy); array = explicit list (Phase 7+)
+    lotInventory: ['corolla94', 'explorer98', 'civic01', 'neon99', 'silverado03', 'bmw97', 'outback02', 'firebird95']  // explicit car IDs on the lot; expands with upgrades/trade-ins
   };
 }
 
@@ -3104,12 +3104,17 @@ function getPerkIndicatorHtml(tag) {
 //  build inventory — trade-ins will handle ongoing restock.
 // ═══════════════════════════════════════════════════════
 function deliverStarterStock(newTier) {
-  const isVet   = state.difficulty === 'veteran';
-  // Pick non-veteran cars of exactly the new tier
-  const pool = CARS.filter(c => c.tier === newTier && !c.veteranOnly);
-  // Shuffle and take 5
+  const isVet = state.difficulty === 'veteran';
+  // Pick non-veteran cars of exactly the new tier not already in inventory
+  const existing = state.lotInventory || [];
+  const pool = CARS.filter(c =>
+    c.tier === newTier && !c.veteranOnly && !existing.includes(c.id)
+  );
   const shuffled = [...pool].sort(() => Math.random() - 0.5);
   const delivered = shuffled.slice(0, 5);
+  // Actually add them to lotInventory
+  state.lotInventory = [...existing, ...delivered.map(c => c.id)];
+  saveGame();
   showStockDeliveryNotice(delivered, newTier);
 }
 
@@ -3531,19 +3536,30 @@ function updateStatBars() {
 // Filters by inventory upgrade tier and veteran mode.
 // tier 0 always visible. tier 1 needs upgrade >= 1. tier 2 needs upgrade >= 2.
 // veteranOnly cars also need veteran mode active.
+// TYPE_ORDER defines display sort for all car lists
+const TYPE_ORDER = {
+  economy:0, compact:1, midsize:2, fullsize:3,
+  wagon:4, minivan:5, suv:6, truck:7, sports:8, luxury:9
+};
+
+function sortCars(cars) {
+  return [...cars].sort((a, b) => {
+    const ta = TYPE_ORDER[a.carType] ?? 5;
+    const tb = TYPE_ORDER[b.carType] ?? 5;
+    if (ta !== tb) return ta - tb;
+    return a.price - b.price;
+  });
+}
+
 function getAvailableCars() {
-  const invTier = state.upgrades.inventory || 0;
-  const isVet   = state.difficulty === 'veteran';
-  return CARS
-    .filter(car => {
-      if (car.veteranOnly && !isVet) return false;
-      return (car.tier || 0) <= invTier;
-    })
-    .sort((a, b) => {
-      // Sort by tier first, then by price within tier
-      if ((a.tier || 0) !== (b.tier || 0)) return (a.tier || 0) - (b.tier || 0);
-      return a.price - b.price;
-    });
+  // Use explicit lotInventory list (set at game start, grows via upgrades/trade-ins)
+  const ids   = state.lotInventory || [];
+  const isVet = state.difficulty === 'veteran';
+  const cars  = CARS.filter(car => {
+    if (car.veteranOnly && !isVet) return false;
+    return ids.includes(car.id);
+  });
+  return sortCars(cars);
 }
 
 function buildInventory() {
@@ -3554,22 +3570,24 @@ function buildInventory() {
   const invTier  = state.upgrades.inventory || 0;
   if (label) label.textContent = `INVENTORY (${visible.length} CARS)`;
 
-  const tierLabels = { 0:"STARTING LOT", 1:"MID-2000s STOCK", 2:"2010s STOCK" };
-  let lastTier = -1;
+  const typeLabels = {
+    economy:'ECONOMY', compact:'COMPACT', midsize:'MIDSIZE', fullsize:'FULL SIZE',
+    wagon:'WAGON', minivan:'MINIVAN', suv:'SUV', truck:'TRUCK',
+    sports:'SPORTS', luxury:'LUXURY'
+  };
+  let lastType = null;
 
   visible.forEach(car => {
-    const carTier = car.tier || 0;
-    // Insert tier divider when tier changes
-    if (carTier !== lastTier) {
-      lastTier = carTier;
-      if (carTier > 0) {  // don't show divider before tier 0
-        const div = document.createElement('div');
-        div.style.cssText = 'font-family:"Oswald",sans-serif;font-size:10px;' +
-          'letter-spacing:3px;text-transform:uppercase;color:var(--yellow);' +
-          'padding:8px 0 4px;border-top:1px solid var(--asphalt-lt);margin-top:4px;';
-        div.textContent = tierLabels[carTier] || 'STOCK';
-        grid.appendChild(div);
-      }
+    const carType = car.carType || 'midsize';
+    // Insert type divider when type changes
+    if (carType !== lastType) {
+      lastType = carType;
+      const div = document.createElement('div');
+      div.style.cssText = 'font-family:"Oswald",sans-serif;font-size:10px;' +
+        'letter-spacing:3px;text-transform:uppercase;color:var(--yellow);' +
+        'padding:8px 0 4px;border-top:1px solid var(--asphalt-lt);margin-top:4px;';
+      div.textContent = typeLabels[carType] || carType.toUpperCase();
+      grid.appendChild(div);
     }
     const dots = Array.from({length:5}, (_,i) =>
       `<div class="cond-dot${i < car.condition ? ' lit':''}"></div>`).join('');
@@ -3594,8 +3612,8 @@ function buildInventory() {
 function toggleDifficulty() {
   const next = state.difficulty === 'rookie' ? 'veteran' : 'rookie';
   selectDifficulty(next);
-  // Persist and refresh lot
   saveGame();
+  buildInventory();       // veteran cars appear/disappear immediately
   loadDailyCustomer();
 }
 
@@ -3871,6 +3889,11 @@ function resolveOutcome(choice) {
   const finalOutcome    = shiftedOutcome;
   const finalCommission = shiftedOutcome !== outcome ? effectiveCommission : commission;
   state.cash += finalCommission;
+
+  // Remove sold car from lot inventory (sold or lowball = car leaves the lot)
+  if ((finalOutcome === 'sold' || finalOutcome === 'lowball') && dlg.pickedCar) {
+    state.lotInventory = (state.lotInventory || []).filter(id => id !== dlg.pickedCar.id);
+  }
 
   // Apply accumulated stat shifts (clamped 0–100)
   Object.entries(dlg.statDeltas).forEach(([k,v]) => {
