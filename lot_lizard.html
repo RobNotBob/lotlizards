@@ -982,6 +982,322 @@
   .perk-pip.used   { background:var(--purple); }
   .perk-pip.avail  { background:rgba(142,68,173,0.3); border:1px solid var(--purple); }
 
+
+  /* ══════════════════════════════════════
+     TUTORIAL SCREEN
+  ══════════════════════════════════════ */
+  #screen-tutorial {
+    background: var(--asphalt);
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .tutorial-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 24px;
+    gap: 0;
+  }
+
+  .tutorial-progress {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .t-pip {
+    width: 32px; height: 4px;
+    background: var(--asphalt-lt);
+    border-radius: 2px;
+    transition: background 0.3s ease;
+  }
+  .t-pip.active  { background: var(--yellow); }
+  .t-pip.done    { background: var(--yellow-dim); }
+
+  .tutorial-card {
+    background: var(--asphalt-mid);
+    border: 1px solid var(--asphalt-lt);
+    border-top: 4px solid var(--yellow);
+    padding: 36px 44px;
+    width: min(620px, 90vw);
+    position: relative;
+    animation: tutCardIn 0.35s ease both;
+  }
+  @keyframes tutCardIn {
+    from { opacity:0; transform: translateY(16px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  .tutorial-card-icon {
+    font-size: 48px;
+    margin-bottom: 14px;
+    display: block;
+    line-height: 1;
+  }
+
+  .tutorial-card-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px; letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 6px;
+  }
+
+  .tutorial-card-title {
+    font-family: 'Boogaloo', cursive;
+    font-size: 36px; color: var(--cream);
+    line-height: 1; margin-bottom: 16px;
+  }
+
+  .tutorial-card-body {
+    font-size: 15px; color: var(--cream-dim);
+    line-height: 1.75; margin-bottom: 20px;
+  }
+  .tutorial-card-body strong { color: var(--yellow); font-style: normal; }
+  .tutorial-card-body em     { color: var(--orange);  font-style: italic; }
+
+  .tutorial-detail {
+    background: var(--asphalt);
+    border-left: 3px solid var(--asphalt-lt);
+    padding: 12px 16px; margin-bottom: 24px;
+    font-size: 13px; color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .tutorial-detail .detail-row {
+    display: flex; gap: 10px; margin-bottom: 4px; align-items: baseline;
+  }
+  .tutorial-detail .detail-row:last-child { margin-bottom: 0; }
+  .detail-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px; letter-spacing: 2px;
+    padding: 2px 6px; flex-shrink: 0;
+    color: var(--cream);
+  }
+  .tag-c  { background: var(--blue); }
+  .tag-h  { background: var(--green); }
+  .tag-hu { background: var(--red); }
+  .tag-w  { background: var(--purple); }
+
+  .tutorial-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-tut-back {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--asphalt-lt);
+    color: var(--text-dim);
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px; letter-spacing: 2px;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .btn-tut-back:hover { border-color: var(--cream-dim); color: var(--cream); }
+  .btn-tut-back:disabled { opacity: 0; pointer-events: none; }
+
+  .btn-tut-next {
+    padding: 12px 36px;
+    background: var(--yellow); color: var(--text-dark); border: none;
+    border-bottom: 4px solid var(--yellow-dim);
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px; font-weight: 700; letter-spacing: 3px;
+    cursor: pointer; transition: transform 0.1s, border-bottom-width 0.1s;
+    text-transform: uppercase;
+  }
+  .btn-tut-next:hover  { background: #f4d03f; }
+  .btn-tut-next:active { transform: translateY(2px); border-bottom-width: 2px; }
+
+  .btn-tut-skip {
+    position: absolute; top: 14px; right: 18px;
+    background: none; border: none;
+    font-size: 12px; color: var(--asphalt-lt);
+    cursor: pointer; font-family: 'Courier Prime', monospace;
+    text-decoration: underline; transition: color 0.15s;
+  }
+  .btn-tut-skip:hover { color: var(--text-dim); }
+
+
+  /* ══════════════════════════════════════
+     BUY CARS OVERLAY
+  ══════════════════════════════════════ */
+  .buy-panel {
+    background:var(--asphalt-mid); border-top:3px solid var(--blue);
+    width:100%; max-width:900px; max-height:88vh;
+    display:flex; flex-direction:column;
+    animation:slideUp 0.35s ease both;
+  }
+  .buy-scroll {
+    overflow-y:auto; padding:20px 24px; flex:1;
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;
+  }
+  .buy-scroll::-webkit-scrollbar { width:4px; }
+  .buy-scroll::-webkit-scrollbar-track { background:var(--asphalt); }
+  .buy-scroll::-webkit-scrollbar-thumb { background:var(--asphalt-lt); }
+
+  .buy-type-header {
+    grid-column: 1 / -1;
+    font-family:'Oswald',sans-serif; font-size:11px;
+    letter-spacing:4px; text-transform:uppercase;
+    color:var(--yellow); padding:8px 0 4px;
+    border-top:1px solid var(--asphalt-lt); margin-top:4px;
+  }
+  .buy-type-header:first-child { border-top:none; margin-top:0; }
+
+  .buy-car-card {
+    background:var(--asphalt); border:1px solid var(--asphalt-lt);
+    border-top:3px solid var(--asphalt-lt); padding:14px 16px;
+    display:flex; flex-direction:column; gap:8px;
+    transition:border-top-color 0.15s;
+  }
+  .buy-car-card.affordable  { border-top-color:var(--blue); }
+  .buy-car-card.stretch     { opacity:0.6; }
+  .buy-car-card.owned       { opacity:0.35; }
+
+  .buy-car-top {
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .buy-car-name {
+    font-family:'Oswald',sans-serif; font-size:14px;
+    color:var(--cream); font-weight:600;
+  }
+  .buy-car-year {
+    font-size:11px; color:var(--text-dim); letter-spacing:1px;
+  }
+  .buy-car-rep {
+    font-size:12px; color:var(--text-dim); font-style:italic;
+    line-height:1.4; flex:1;
+  }
+  .buy-price-row {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:2px;
+  }
+  .buy-cost  {
+    font-family:'Oswald',sans-serif; font-size:15px; font-weight:700; color:var(--blue);
+  }
+
+  .buy-cond  { display:flex; gap:3px; }
+
+  .btn-buy-car {
+    width:100%; padding:9px; background:var(--blue); color:var(--cream);
+    border:none; border-bottom:3px solid var(--blue-dim);
+    font-family:'Oswald',sans-serif; font-size:12px;
+    font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    cursor:pointer; transition:all 0.15s;
+  }
+  .btn-buy-car:hover { background:#3a9ad4; }
+  .btn-buy-car:active { transform:translateY(2px); border-bottom-width:1px; }
+  .btn-buy-car:disabled {
+    background:var(--asphalt-lt); color:var(--text-dim);
+    border-bottom-color:var(--asphalt); cursor:not-allowed;
+  }
+  .btn-buy-car.owned-btn {
+    background:transparent; color:var(--text-dim);
+    border:1px solid var(--asphalt-lt); border-bottom:1px solid var(--asphalt-lt);
+    cursor:default; letter-spacing:1px;
+  }
+
+  /* ══════════════════════════════════════
+     SELLER / APPRAISAL DIALOGUE
+     Reuses dialogue screen with amber accent
+  ══════════════════════════════════════ */
+  .dlg-mode-seller .dlg-scene-header { background:rgba(230,126,34,0.15); }
+  .dlg-mode-seller .dlg-round-badge  { color:var(--orange); }
+  .dlg-mode-seller .bubble-customer  { border-left-color:var(--orange); }
+  .dlg-mode-seller .bubble-customer .bubble-who { color:var(--orange); }
+
+  .appraisal-tag  { background:var(--orange);     color:var(--cream); }
+  .lowball-tag    { background:var(--red);         color:var(--cream); }
+  .fair-tag       { background:var(--green);       color:var(--cream); }
+  .wild-tag-sell  { background:var(--purple);      color:var(--cream); }
+
+  .appraisal-btn  { border-left-color:var(--orange); }
+  .appraisal-btn:hover { background:rgba(230,126,34,0.1); }
+  .lowball-sell-btn   { border-left-color:var(--red); }
+  .lowball-sell-btn:hover { background:rgba(192,57,43,0.1); }
+  .fair-btn       { border-left-color:var(--green); }
+  .fair-btn:hover { background:rgba(39,174,96,0.1); }
+  .wild-sell-btn  { border-left-color:var(--purple); }
+  .wild-sell-btn:hover { background:rgba(142,68,173,0.1); }
+
+  /* Seller car info panel (replaces car-select in appraisal) */
+  .dlg-seller-car {
+    padding:14px 18px; flex:1; display:flex; flex-direction:column; gap:8px;
+  }
+  .dlg-seller-car-name {
+    font-family:'Oswald',sans-serif; font-size:15px;
+    color:var(--cream); font-weight:600;
+  }
+  .dlg-seller-car-rep {
+    font-size:12px; color:var(--text-dim); font-style:italic; line-height:1.4;
+  }
+  .dlg-offer-display {
+    background:var(--asphalt); border:1px solid var(--asphalt-lt);
+    padding:10px 12px; margin-top:4px;
+  }
+  .dlg-offer-label {
+    font-family:'Oswald',sans-serif; font-size:10px;
+    letter-spacing:3px; text-transform:uppercase;
+    color:var(--text-dim); margin-bottom:4px;
+  }
+  .dlg-offer-val {
+    font-family:'Boogaloo',cursive; font-size:24px; color:var(--orange);
+  }
+  .dlg-offer-note {
+    font-size:11px; color:var(--text-dim); font-style:italic; margin-top:2px;
+  }
+
+
+  /* ══════════════════════════════════════
+     TRADE-IN OFFER
+  ══════════════════════════════════════ */
+  .bubble-tradein {
+    align-self: stretch;
+    background: var(--asphalt-lt);
+    border: 1px solid var(--orange);
+    border-left: 4px solid var(--orange);
+    padding: 14px 18px;
+    animation: bubbleIn 0.3s ease both;
+    line-height: 1.5;
+  }
+  .tradein-header {
+    font-family: 'Oswald', sans-serif; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 8px;
+  }
+  .tradein-car-name {
+    font-family: 'Oswald', sans-serif; font-size: 16px;
+    color: var(--cream); font-weight: 600; margin-bottom: 4px;
+  }
+  .tradein-car-rep {
+    font-size: 13px; color: var(--text-dim);
+    font-style: italic; margin-bottom: 10px;
+  }
+
+
+  .tradein-buttons {
+    display: flex; gap: 10px; margin-top: 4px;
+  }
+  .btn-tradein-accept {
+    flex: 1; padding: 10px; background: var(--orange); color: var(--cream);
+    border: none; border-bottom: 3px solid #b7640a;
+    font-family: 'Oswald', sans-serif; font-size: 13px;
+    font-weight: 700; letter-spacing: 2px; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-tradein-accept:hover { background: #f39c12; }
+  .btn-tradein-accept:active { transform: translateY(2px); }
+  .btn-tradein-decline {
+    flex: 1; padding: 10px; background: transparent; color: var(--text-dim);
+    border: 1px solid var(--asphalt-lt);
+    font-family: 'Oswald', sans-serif; font-size: 13px;
+    letter-spacing: 2px; cursor: pointer; transition: all 0.15s;
+  }
+  .btn-tradein-decline:hover { border-color: var(--cream-dim); color: var(--cream); }
+
   /* Autosave flash */
   .save-flash {
     position:fixed; bottom:14px; left:50%; transform:translateX(-50%);
@@ -1052,6 +1368,37 @@
   </div>
 </div>
 
+
+<!-- ═══════════ TUTORIAL SCREEN ═══════════ -->
+<div class="screen" id="screen-tutorial">
+  <div class="tutorial-outer">
+
+    <div class="tutorial-progress" id="tut-progress">
+      <div class="t-pip active" id="tpip-0"></div>
+      <div class="t-pip"       id="tpip-1"></div>
+      <div class="t-pip"       id="tpip-2"></div>
+      <div class="t-pip"       id="tpip-3"></div>
+      <div class="t-pip"       id="tpip-4"></div>
+    </div>
+
+    <div class="tutorial-card" id="tut-card">
+      <button class="btn-tut-skip" onclick="skipTutorial()">skip</button>
+
+      <span class="tutorial-card-icon" id="tut-icon">🚗</span>
+      <div class="tutorial-card-num"   id="tut-num">Step 1 of 5</div>
+      <div class="tutorial-card-title" id="tut-title">Welcome to the Lot</div>
+      <div class="tutorial-card-body"  id="tut-body"></div>
+      <div class="tutorial-detail"     id="tut-detail"></div>
+
+      <div class="tutorial-nav">
+        <button class="btn-tut-back" id="tut-back" onclick="tutNav(-1)" disabled>← BACK</button>
+        <button class="btn-tut-next" id="tut-next" onclick="tutNav(1)">NEXT →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- ═══════════ LOT HUB ═══════════ -->
 <div class="screen" id="screen-lot">
   <div class="topbar">
@@ -1076,6 +1423,7 @@
     <div class="topbar-right">
       <button class="nav-btn"    onclick="openOverlay('overlay-perks')">PERKS</button>
       <button class="nav-btn"    onclick="openOverlay('overlay-upgrades')">UPGRADES</button>
+      <button class="nav-btn"    onclick="openOverlay('overlay-buy')">BUY CARS</button>
       <button class="diff-badge" id="hud-difficulty" onclick="toggleDifficulty()" title="Click to toggle difficulty">ROOKIE</button>
       <button class="reset-link" onclick="showResetModal()">reset game</button>
       <button id="mute-btn" onclick="toggleMute()" title="Toggle sound" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:2px 4px">🔊</button>
@@ -1211,6 +1559,24 @@
       </div>
     </div>
     <div class="perk-tree-body" id="perk-tree-body">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════ BUY CARS OVERLAY ═══════════ -->
+<div class="overlay" id="overlay-buy">
+  <div class="buy-panel">
+    <div class="overlay-header">
+      <div class="overlay-title" style="color:var(--blue)">Buy Cars</div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
+        <div class="overlay-cash" id="buy-cash-display">$0</div>
+        <div style="font-size:10px;color:var(--text-dim);font-family:'Oswald',sans-serif;letter-spacing:1px;">YOUR CASH</div>
+      </div>
+      <button class="overlay-close" onclick="closeOverlay('overlay-buy')">✕ CLOSE</button>
+    </div>
+    <div class="buy-scroll" id="buy-cars-container">
       <!-- Populated by JS -->
     </div>
   </div>
@@ -2265,7 +2631,11 @@ function freshState() {
     lastStatDeltas: { charm:0, honesty:0, closing:0 },
     perks: { charmer:0, shooter:0, closer:0 },
     perkPointsRaw: 0,
-    lotInventory: ['corolla94', 'explorer98', 'civic01', 'neon99', 'silverado03', 'bmw97', 'outback02', 'firebird95']  // explicit car IDs on the lot; expands with upgrades/trade-ins
+    lotInventory: ['corolla94', 'explorer98', 'civic01', 'neon99', 'silverado03', 'bmw97', 'outback02', 'firebird95'],
+    tutorialSeen: false,
+    acquisitionCosts: {},  // carId → price paid
+    todayIsSeller: false,
+    todaySellerIdx: null
   };
 }
 
@@ -2728,6 +3098,560 @@ function playSoundForOutcome(outcome) {
   else if (outcome === 'blowup')  playSoundBlowup();
 }
 
+
+// ═══════════════════════════════════════════════════════
+//  SELLER ARCHETYPES
+//  Same 3-round structure as customers but reversed.
+//  Player is the appraiser. Choices: inspect/lowball/fair/wild
+//
+//  carPool: tags used to pick a car from CARS for this seller
+//  baseValue: multiplier of car.price for the seller's ask
+//    (seller asks ~80-90% of list; you try to buy at 50-70%)
+//  offerMultiplier: what a "fair" offer looks like (% of car.price)
+// ═══════════════════════════════════════════════════════
+const SELLERS = [
+
+  // ── DESPERATE DIVORCE GUY ──────────────────────────
+  {
+    id:'divorce', name:"Dave", archetype:"Desperate Seller", emoji:"😓",
+    carPool:['american','midsize','suv'],
+    baseValue: 0.75,   // asks 75% of list — already underselling
+    offerMultiplier: 0.55,
+    intro:"A man in a slightly wrinkled dress shirt walks in fast. He has the energy of someone whose lawyer just sent an invoice. He wants this done today.",
+    rounds:[
+      {
+        sellerLine:"I just need to move this thing. Whatever you can give me. I'm not — look, I just need it gone. It runs fine. It ran fine last week.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Check it over first",
+            text:"\"I appreciate the urgency. Give me five minutes with it before we talk numbers.\"",
+            moodDelta:+5, offerShift:+0.05,
+            nextLine:"Yeah. Sure. Take your time. I'll be — I'll just stand here." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Lead with a low number",
+            text:"\"I can take it off your hands today. Won't be a lot, but it'll be cash and it'll be fast.\"",
+            moodDelta:-5, offerShift:+0.08,
+            nextLine:"How low are we talking. I have a number in my head." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Empathize and reassure",
+            text:"\"Let's make this easy. I'll give you a fair number and we'll have the paperwork done in an hour.\"",
+            moodDelta:+15, offerShift:0,
+            nextLine:"That's... yeah. Okay. That's what I need to hear right now." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask what happened",
+            text:"\"You don't have to tell me. But sometimes it helps to say it out loud.\"",
+            moodDelta:+10, offerShift:+0.03,
+            nextLine:"[long pause] She got the house. I'm getting an apartment that allows cats. I don't even like cats." },
+        ]
+      },
+      {
+        sellerLine:"It's a good car. 2006. I kept up on the oil changes — mostly. The AC works. The check engine light is... it's been on a while but the mechanic said it was fine.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Pull the codes",
+            text:"\"I'm going to plug in my scanner. If it's nothing serious, it won't affect the offer.\"",
+            moodDelta:0, offerShift:+0.06,
+            nextLine:"Right. Yeah. It's probably the O2 sensor. It's always the O2 sensor." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Use the light against him",
+            text:"\"Check engine light changes things. I have to account for the unknown.\"",
+            moodDelta:-10, offerShift:+0.12,
+            nextLine:"It's just a sensor. It's fine. The mechanic said." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Take it at face value",
+            text:"\"If your mechanic cleared it, I'll take that at face value. Doesn't change my offer.\"",
+            moodDelta:+12, offerShift:0,
+            nextLine:"See, that's — thank you. That's reasonable." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask about the cat",
+            text:"\"What kind of cat are you getting?\"",
+            moodDelta:+8, offerShift:+0.02,
+            nextLine:"I was thinking a tabby. Something independent. That doesn't need a lot from me." },
+        ]
+      },
+      {
+        sellerLine:"Okay. So. What are we looking at. Just — give it to me straight.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Give an honest appraisal",
+            text:"\"Based on what I see — the miles, the light, the condition — I can do sixty percent of book. Fair given the unknowns.\"",
+            moodDelta:+10, offerShift:0,
+            outcome:'deal', margin:0.40,
+            nextLine:"Sixty percent. Okay. Yeah. Can we do it today? Like right now today?" },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Go in low",
+            text:"\"I can do fifty percent of book. That's accounting for the risk I'm taking on.\"",
+            moodDelta:-5, offerShift:0,
+            outcome:'deal', margin:0.50,
+            nextLine:"Fifty. I... yeah. Fine. Whatever. Just get me out of this." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Offer a fair split",
+            text:"\"Sixty-five percent. I'll cover the inspection and the paperwork. Clean break for both of us.\"",
+            moodDelta:+20, offerShift:0,
+            outcome:'deal', margin:0.35,
+            nextLine:"Sixty-five. Yeah. Deal. You're a good person. I'm sorry I was weird when I came in." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Throw in life advice",
+            text:"\"Sixty percent for the car. And for free — cats are actually great. You'll be fine.\"",
+            moodDelta:+15, offerShift:0,
+            outcome:'deal', margin:0.40,
+            nextLine:"[laughs for the first time] Okay. Sixty percent. And I'm naming him Dave. After me. Fresh start." },
+        ]
+      }
+    ]
+  },
+
+  // ── DELUSIONAL CLASSIC CAR GUY ─────────────────────
+  {
+    id:'delusion', name:"Gerald", archetype:"The Optimist", emoji:"🤩",
+    carPool:['american','cult','quirky'],
+    baseValue: 1.8,   // asks nearly double what it's worth
+    offerMultiplier: 0.45,
+    intro:"Gerald arrives wearing a vintage racing jacket that has not seen a track. He is pulling a trailer. On the trailer is a 1998 Pontiac Sunfire with a custom hood scoop. He is beaming.",
+    rounds:[
+      {
+        sellerLine:"So. Before you say anything — I know what you're thinking. But hear me out. This is not your average Sunfire. This has the sport package. AND it has a hood scoop.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Examine the scoop",
+            text:"\"Tell me about the hood scoop. Is it functional?\"",
+            moodDelta:+15, offerShift:-0.05,
+            nextLine:"It's decorative. But it LOOKS functional, which in my opinion is more important." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Be direct about value",
+            text:"\"Gerald, I appreciate the enthusiasm. The market for modified Sunfires is... specific.\"",
+            moodDelta:-10, offerShift:+0.08,
+            nextLine:"The MARKET doesn't understand vision. That's what I'm telling you." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Let him tell the story",
+            text:"\"Walk me through everything you've done to it. I want the full picture.\"",
+            moodDelta:+20, offerShift:-0.02,
+            nextLine:"OKAY so. First I added the scoop. Then I had the seats reupholstered — in red. Then I added a spoiler from a 2001 Cavalier which actually fits almost perfectly." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Admire the jacket",
+            text:"\"That is a great jacket. Is that original Pontiac merchandise?\"",
+            moodDelta:+12, offerShift:0,
+            nextLine:"It's actually from a NASCAR event in 1987. I wasn't there but I have a connection." },
+        ]
+      },
+      {
+        sellerLine:"I'm thinking fifteen hundred. And I think that's very fair given the modifications. The scoop alone — and I had it custom painted — was three hundred dollars.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Price the reality",
+            text:"\"I have to be honest. Modified cars are harder to move. The mods add cost but not always value.\"",
+            moodDelta:-8, offerShift:+0.15,
+            nextLine:"That is the most depressing thing I have ever heard and I once watched my team lose a championship game in overtime." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Counter low",
+            text:"\"Book on a '98 Sunfire in this condition is four hundred. I can do five with the scoop as a bonus.\"",
+            moodDelta:-20, offerShift:+0.10,
+            nextLine:"Five hundred. FIVE. Do you know how long it took me to install that scoop? I'll tell you. Four hours and a YouTube tutorial." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Split the difference creatively",
+            text:"\"I can see eight hundred. I'll keep the scoop on it. It'll sell the story.\"",
+            moodDelta:+5, offerShift:0,
+            nextLine:"Eight hundred. I'm not — okay. I respect that you're keeping the scoop on it." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask if the spoiler fits perfectly",
+            text:"\"You said the spoiler fits 'almost' perfectly. What's the almost?\"",
+            moodDelta:0, offerShift:+0.05,
+            nextLine:"There's a gap on the right side. About a centimeter. You can't see it unless you look. Don't look." },
+        ]
+      },
+      {
+        sellerLine:"Look. I'm not gonna take less than a thousand. That's my floor. The scoop is worth five hundred alone in my mind.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Hold firm with facts",
+            text:"\"Seven-fifty. That's the market, Gerald. Not me. The market.\"",
+            moodDelta:0, offerShift:0,
+            outcome:'deal', margin:0.42,
+            nextLine:"...Seven-fifty. I want the scoop to go to a good home. You seem like you'll respect it." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Final offer low",
+            text:"\"Six hundred. Final. I'll store the car with the scoop facing the street.\"",
+            moodDelta:-15, offerShift:0,
+            outcome:'walk', margin:0,
+            nextLine:"You know what, I think I'm going to try the internet. Good day." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Meet at eight",
+            text:"\"Eight hundred, we shake on it, and I tell every customer the scoop is a conversation piece.\"",
+            moodDelta:+18, offerShift:0,
+            outcome:'deal', margin:0.38,
+            nextLine:"[visibly moved] You're going to tell people about it? Yes. Eight hundred. Deal." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Offer to display the jacket",
+            text:"\"Eight hundred and I'll hang the jacket in the office as a tribute to the car.\"",
+            moodDelta:+25, offerShift:0,
+            outcome:'deal', margin:0.38,
+            nextLine:"[removes jacket immediately] The jacket STAYS with the car. Non-negotiable. But eight hundred. Yes." },
+        ]
+      }
+    ]
+  },
+
+  // ── SHADE TREE MECHANIC ────────────────────────────
+  {
+    id:'shadetree', name:"Randy", archetype:"The Home Mechanic", emoji:"🔧",
+    carPool:['american','truck','reliable'],
+    baseValue: 0.85,
+    offerMultiplier: 0.58,
+    intro:"Randy arrives in a truck that is definitely not the truck he's selling. He is wearing a shirt with a pocket and has the confident energy of a man who has fixed many things, some of them correctly.",
+    rounds:[
+      {
+        sellerLine:"She runs great. I did all the work myself. Replaced the alternator, the water pump, both front struts. New brake pads all around. I do my own work so you know it's done right.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Ask about the struts",
+            text:"\"What brand struts did you use? And did you do an alignment after?\"",
+            moodDelta:-5, offerShift:+0.08,
+            nextLine:"I used what the parts store had. And I was going to do the alignment but it drives mostly straight so." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Question the DIY work",
+            text:"\"Seller-done repairs are tricky. I can't verify the work, so I have to price in the uncertainty.\"",
+            moodDelta:-15, offerShift:+0.12,
+            nextLine:"I've been working on cars since I was sixteen. I have TOOLS." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Appreciate the effort",
+            text:"\"That's a lot of work done right before a sale. I appreciate that.\"",
+            moodDelta:+15, offerShift:0,
+            nextLine:"I'm not gonna sell somebody something I didn't maintain. That's just how I was raised." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask about the truck he arrived in",
+            text:"\"Is that your truck out front? That's not the one you're selling?\"",
+            moodDelta:+8, offerShift:0,
+            nextLine:"That one's not for sale. That one and me have an understanding." },
+        ]
+      },
+      {
+        sellerLine:"The only thing I'll tell you is the AC compressor makes a noise when you first turn it on. Goes away after about thirty seconds. I was gonna fix it but then I decided to sell instead.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"How bad is the noise",
+            text:"\"What kind of noise? Bearing squeal or something heavier?\"",
+            moodDelta:+5, offerShift:+0.06,
+            nextLine:"It's more of a... [makes noise] ...that. But quieter. And only for thirty seconds." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Price the compressor",
+            text:"\"AC compressor on this model is four hundred parts and labor. I have to factor that in.\"",
+            moodDelta:-8, offerShift:+0.10,
+            nextLine:"I could fix it myself for like sixty bucks in parts. I just chose not to. That's different." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Note it but don't penalize hard",
+            text:"\"I'll note it but it won't kill the deal. Thirty seconds is fine. I'll disclose it.\"",
+            moodDelta:+12, offerShift:+0.02,
+            nextLine:"That's fair. It's an honest noise. It goes away." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask him to demonstrate the noise",
+            text:"\"Can you do the noise again? I want to hear it.\"",
+            moodDelta:+10, offerShift:+0.03,
+            nextLine:"[makes the noise again, louder] It's more of a whine than a grind. Whines are fine. Grinds are not fine." },
+        ]
+      },
+      {
+        sellerLine:"I want forty-five hundred. I looked it up online. That's fair for the condition and everything I put into it.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Counter with evidence",
+            text:"\"Online pricing assumes verified repairs. I can do thirty-eight hundred — that covers my uncertainty.\"",
+            moodDelta:0, offerShift:0,
+            outcome:'deal', margin:0.38,
+            nextLine:"Thirty-eight. You're gonna make money on this. But okay. I respect a straight counter." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Go low",
+            text:"\"Three thousand. The AC issue and unverified work put me there.\"",
+            moodDelta:-20, offerShift:0,
+            outcome:'walk', margin:0,
+            nextLine:"Three thousand. I did four hundred in PARTS alone. I'll sell it to a guy at work. Good day." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Meet him near his number",
+            text:"\"Four thousand. Honest price for honest work. Let's shake on it.\"",
+            moodDelta:+18, offerShift:0,
+            outcome:'deal', margin:0.30,
+            nextLine:"Four thousand. Yeah. You know what, you're alright. Tell people the work was done right." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Offer to fix the AC together",
+            text:"\"What if I buy it at thirty-eight and you come show me how to fix the compressor?\"",
+            moodDelta:+20, offerShift:0,
+            outcome:'deal', margin:0.38,
+            nextLine:"[pause] That's actually kind of a fun offer. Yeah. Deal. Bring your own ratchet though." },
+        ]
+      }
+    ]
+  },
+
+  // ── ESTATE SALE KID ────────────────────────────────
+  {
+    id:'estate', name:"Tyler", archetype:"The Heir", emoji:"🗝️",
+    carPool:['luxury','comfort','boring'],
+    baseValue: 0.70,
+    offerMultiplier: 0.50,
+    intro:"Tyler is 24 and wearing a polo shirt that belonged to someone else. He has a folder of documents he hasn't read. The car belonged to his grandmother. He has been told to 'just get something for it.'",
+    rounds:[
+      {
+        sellerLine:"So. It was my grandma's. She passed in March. We just need to — the estate lawyer said to liquidate assets. I don't really know what it's worth. She kept it in the garage.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Look it over carefully",
+            text:"\"Garage-kept cars are usually in great shape. Let me take a look before we talk numbers.\"",
+            moodDelta:+10, offerShift:+0.05,
+            nextLine:"Sure. Yeah. She only drove it to church and the pharmacy. Like, that's literally it." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Lead very low",
+            text:"\"Older cars in estate sales can go either way. I'd have to start low given the unknowns.\"",
+            moodDelta:-5, offerShift:+0.10,
+            nextLine:"Oh. I mean. I don't really know what's normal so. Okay." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Be transparent",
+            text:"\"I'll give you a fair number based on the actual condition. You should know what it's worth.\"",
+            moodDelta:+20, offerShift:0,
+            nextLine:"That's — yeah. The lawyer just said don't take the first offer but I don't really know what that means." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask about grandma",
+            text:"\"Tell me about her. What was she like?\"",
+            moodDelta:+15, offerShift:+0.04,
+            nextLine:"She was really cool. Like, genuinely cool. She used to say the car was the only thing that was just hers. That makes me feel weird about selling it." },
+        ]
+      },
+      {
+        sellerLine:"There's a folder in the glove box. She kept every receipt for everything she ever did to it. Oil changes, tire rotations... there's a receipt for $4 of windshield washer fluid.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"That folder is gold",
+            text:"\"A documented car with a full history is worth more. That folder actually helps your number.\"",
+            moodDelta:+15, offerShift:+0.08,
+            nextLine:"Really? I thought it was just... paper. She kept everything. Tax returns from 1987." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Ignore the folder",
+            text:"\"Documentation is nice but doesn't change the mechanical reality much.\"",
+            moodDelta:-8, offerShift:+0.05,
+            nextLine:"Oh. I thought it would matter. She was really proud of that folder." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Value it properly",
+            text:"\"Documented maintenance history adds real value. I'll factor it into the offer.\"",
+            moodDelta:+18, offerShift:+0.05,
+            nextLine:"She would have liked that. She liked things being recognized properly." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask to keep the folder",
+            text:"\"Would you mind if I kept the folder in the car? It's part of the story.\"",
+            moodDelta:+22, offerShift:+0.06,
+            nextLine:"[genuinely touched] Yeah. Yeah, leave it in there. She'd like that." },
+        ]
+      },
+      {
+        sellerLine:"The lawyer said I should ask for more than I think it's worth. So I'm going to say... eight thousand? Is that crazy? I feel like that might be crazy.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Gently correct him",
+            text:"\"Book is closer to five-five. I can do five with the documentation premium. That's fair.\"",
+            moodDelta:+10, offerShift:0,
+            outcome:'deal', margin:0.35,
+            nextLine:"Five thousand. The lawyer said don't take first offer but you seem really honest. Five thousand." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Take advantage",
+            text:"\"Eight is high. I can do three-five given the age and uncertainty.\"",
+            moodDelta:-15, offerShift:0,
+            outcome:'offended', margin:0,
+            nextLine:"Three-five... I'm going to call my dad. This doesn't feel right." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Give him a real number",
+            text:"\"Five-five is honest for this car in this condition with this history. That's what I'd offer anyone.\"",
+            moodDelta:+25, offerShift:0,
+            outcome:'deal', margin:0.30,
+            nextLine:"Five-five. Yeah. That sounds real. That sounds like a real number. Deal. Thank you for being straight with me." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Tell him what the lawyer meant",
+            text:"\"What your lawyer meant is: don't accept the first number if it feels low. Five-five doesn't feel low. Trust that feeling.\"",
+            moodDelta:+20, offerShift:0,
+            outcome:'deal', margin:0.32,
+            nextLine:"..That's actually helpful. Five-five. Deal. I'm going to tell my dad I negotiated." },
+        ]
+      }
+    ]
+  },
+
+  // ── THE FLIPPER ────────────────────────────────────
+  {
+    id:'flipper', name:"Marco", archetype:"The Flipper", emoji:"📊",
+    carPool:['sporty','cool','cult','fast'],
+    baseValue: 0.95,
+    offerMultiplier: 0.65,
+    intro:"Marco arrives five minutes early and has already walked the lot twice. He knows the CarFax, the auction history, and what the last three sold for on Bring a Trailer. He is trying to squeeze you and he is good at it.",
+    rounds:[
+      {
+        sellerLine:"Before you start — I know exactly what this is worth. I've done the research. Don't try the 'unknown issues' angle on me. I've heard it.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Inspect anyway",
+            text:"\"I'm going to inspect it regardless. That's how I protect both of us.\"",
+            moodDelta:+5, offerShift:+0.04,
+            nextLine:"Fine. Professional. I respect that." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Match his energy",
+            text:"\"Good. Then we skip the theater and talk real numbers.\"",
+            moodDelta:+10, offerShift:+0.05,
+            nextLine:"Finally. Someone who doesn't play games. What's your opening?" },
+          { tag:'fair', cls:'fair-btn',
+            label:"Acknowledge his research",
+            text:"\"You've done your homework. So have I. Let's see if our numbers are close.\"",
+            moodDelta:+12, offerShift:0,
+            nextLine:"That's the right answer. What are you thinking?" },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask what he paid for it",
+            text:"\"What did you buy it for?\"",
+            moodDelta:-5, offerShift:+0.08,
+            nextLine:"That's not relevant to this transaction. Nice try." },
+        ]
+      },
+      {
+        sellerLine:"Bring a Trailer comps have this at fourteen to sixteen depending on condition. Mine is a nine out of ten. Freshly detailed, new tires, clean title.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Challenge the comp",
+            text:"\"BaT prices reflect enthusiast premiums. Retail used is different. I'm not an auction.\"",
+            moodDelta:0, offerShift:+0.08,
+            nextLine:"Fair point. What's your retail comp then." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Anchor low immediately",
+            text:"\"My ceiling is eleven. That's retail used with margin for the unknown.\"",
+            moodDelta:-12, offerShift:+0.10,
+            nextLine:"Eleven is insulting. We both know that." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Counter with your own data",
+            text:"\"Retail used comps for this market put it at twelve-five. That's where I start.\"",
+            moodDelta:+8, offerShift:0,
+            nextLine:"Twelve-five. You're not far off. I'm at fourteen, minimum." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask why he's selling",
+            text:"\"You know this market better than most. Why are you selling through a lot?\"",
+            moodDelta:+5, offerShift:+0.04,
+            nextLine:"I need liquidity fast. Don't use that against me." },
+        ]
+      },
+      {
+        sellerLine:"I'll take thirteen-five and not a penny less. I have two other lots interested. This isn't me being difficult — this is me having options.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Call his bluff professionally",
+            text:"\"If the other lots are at thirteen-five, go with them. I'm at twelve-five. That's my number.\"",
+            moodDelta:0, offerShift:0,
+            outcome:'deal', margin:0.28,
+            nextLine:"[pause] You didn't flinch. Twelve-five. Let's go." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Go lower to force movement",
+            text:"\"Other lots interested means they haven't committed. I'm committing — at twelve.\"",
+            moodDelta:-10, offerShift:0,
+            outcome:'walk', margin:0,
+            nextLine:"Twelve. No. I'll take my chances elsewhere. Nice meeting you." },
+          { tag:'fair', cls:'fair-btn',
+            label:"Split it cleanly",
+            text:"\"Thirteen. Clean split. No games. I think you appreciate clean.\"",
+            moodDelta:+15, offerShift:0,
+            outcome:'deal', margin:0.22,
+            nextLine:"Thirteen. Yeah. That's clean. Deal." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Offer a bonus for speed",
+            text:"\"Twelve-five and we close in the next twenty minutes. Time is the bonus.\"",
+            moodDelta:+10, offerShift:0,
+            outcome:'deal', margin:0.28,
+            nextLine:"Twenty minutes. You know I need the liquidity. Twelve-five. Deal. Clock starts now." },
+        ]
+      }
+    ]
+  },
+
+  // ── SUSPICIOUS CHARACTER ───────────────────────────
+  {
+    id:'suspicious', name:"A Guy", archetype:"No Questions Please", emoji:"🕶️",
+    carPool:['american','fast','loud'],
+    baseValue: 0.50,   // very cheap — but why
+    offerMultiplier: 0.40,
+    intro:"A man in sunglasses arrives at opening time. The car he's selling is nicer than it should be at this price. He is friendly. Very friendly. In a way that makes you want to ask fewer questions, not more.",
+    rounds:[
+      {
+        sellerLine:"Nice lot. Listen — I've got a car I need to move. Good car. Great car actually. I just need it gone by end of day. Cash is fine. Whatever you've got.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Ask for the title",
+            text:"\"I'll need to see the title before anything else.\"",
+            moodDelta:-5, offerShift:+0.10,
+            nextLine:"The title is... being transferred. There's a form. It's a normal thing." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Low offer immediately",
+            text:"\"End of day, no questions — I can do that. But the price reflects the speed.\"",
+            moodDelta:+10, offerShift:+0.05,
+            nextLine:"Speed is exactly what I need. What kind of price?" },
+          { tag:'fair', cls:'fair-btn',
+            label:"Ask basic questions",
+            text:"\"Happy to help. Just need the basics — title, mileage, any known issues.\"",
+            moodDelta:-8, offerShift:+0.08,
+            nextLine:"Questions. Right. Basic questions. Sure. The mileage is... recent." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask why the rush",
+            text:"\"What's the hurry?\"",
+            moodDelta:-10, offerShift:+0.12,
+            nextLine:"I'm relocating. Opportunity came up. Fast. Very fast. This morning, actually." },
+        ]
+      },
+      {
+        sellerLine:"It runs perfect. I mean perfect. I've put a lot into this car. A lot. The previous owner — I bought it from a guy — he also put a lot into it.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Run the VIN",
+            text:"\"I'm going to run the VIN. Standard procedure.\"",
+            moodDelta:-15, offerShift:+0.15,
+            nextLine:"The VIN. Sure. [long pause] There might be a discrepancy. In the system. It's a known issue." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Price the risk in",
+            text:"\"I can't verify any of this. My offer has to reflect that.\"",
+            moodDelta:+5, offerShift:+0.08,
+            nextLine:"Verify. Right. Sure. How low are we talking?" },
+          { tag:'fair', cls:'fair-btn',
+            label:"Ask about the previous owner",
+            text:"\"What do you know about the previous owner?\"",
+            moodDelta:-5, offerShift:+0.10,
+            nextLine:"He was a collector. Private. Kept to himself. Didn't want attention. Relatable honestly." },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask what he put into it",
+            text:"\"What specifically did you put into it?\"",
+            moodDelta:0, offerShift:+0.05,
+            nextLine:"Things. Performance things. Maintenance. The kind of work you don't really document." },
+        ]
+      },
+      {
+        sellerLine:"I'm thinking three thousand. For a car like this. I know it's under market. I'm not greedy. I just need it to be someone else's problem by noon.",
+        choices:[
+          { tag:'inspect', cls:'appraisal-btn',
+            label:"Decline professionally",
+            text:"\"I appreciate it, but I can't take a car without a clean title. Too much exposure for my lot.\"",
+            moodDelta:0, offerShift:0,
+            outcome:'walk', margin:0,
+            nextLine:"Smart. You're smart. [leaves quickly] Good lot. Nice sign." },
+          { tag:'lowball', cls:'lowball-sell-btn',
+            label:"Go very low and take the risk",
+            text:"\"Twenty-five hundred. Cash. Right now. No paperwork questions from me.\"",
+            moodDelta:+15, offerShift:0,
+            outcome:'deal', margin:0.50,
+            nextLine:"Twenty-five. [looks around] Yeah. Okay. Do you have an envelope?" },
+          { tag:'fair', cls:'fair-btn',
+            label:"Offer fair but ask for title first",
+            text:"\"I'll do three thousand the moment you produce a clean title. I'll wait.\"",
+            moodDelta:-5, offerShift:0,
+            outcome:'walk', margin:0,
+            nextLine:"Waiting is not... I can't wait. I appreciate your time. [leaves]" },
+          { tag:'wild', cls:'wild-sell-btn',
+            label:"Ask his name again",
+            text:"\"I'm sorry — what was your name again?\"",
+            moodDelta:-20, offerShift:0,
+            outcome:'walk', margin:0,
+            nextLine:"[already at the door] A guy. Just a guy. Great lot. Good luck. [gone]" },
+        ]
+      }
+    ]
+  },
+];
+
 // ═══════════════════════════════════════════════════════
 //  PERK CONFIGURATION  — tune these when adding customers
 // ═══════════════════════════════════════════════════════
@@ -3164,6 +4088,567 @@ function showStockDeliveryNotice(cars, tier) {
   setTimeout(() => { if (notice.parentNode) notice.remove(); }, 8000);
 }
 
+
+// ═══════════════════════════════════════════════════════
+//  PHASE 7: BUY CARS OVERLAY
+// ═══════════════════════════════════════════════════════
+
+function renderBuyCars() {
+  const container = document.getElementById('buy-cars-container');
+  const cashEl    = document.getElementById('buy-cash-display');
+  if (!container) return;
+
+  cashEl.textContent = '$' + state.cash.toLocaleString();
+  container.innerHTML = '';
+
+  const owned    = state.lotInventory || [];
+  const invTier  = state.upgrades.inventory || 0;
+  const isVet    = state.difficulty === 'veteran';
+
+  // All cars not currently on the lot, filtered by tier and veteran
+  const available = CARS.filter(c => {
+    if (c.veteranOnly && !isVet) return false;
+    if ((c.tier || 0) > invTier) return false;
+    return !owned.includes(c.id);
+  });
+
+  // Sort by type
+  const sorted = sortCars(available);
+
+  // Split into affordable and stretch (up to 4 stretch cars shown)
+  const buyCost   = c => Math.round(c.price * 0.70);
+  const affordable = sorted.filter(c => state.cash >= buyCost(c));
+  const stretch    = sorted.filter(c => state.cash < buyCost(c)).slice(0, 4);
+
+  const allToShow = [...affordable, ...stretch];
+
+  if (allToShow.length === 0) {
+    const empty = document.createElement('div');
+    empty.style.cssText = 'grid-column:1/-1;text-align:center;padding:40px;' +
+      'color:var(--text-dim);font-style:italic;font-size:14px;';
+    empty.textContent = "You own everything available at your current inventory tier. Upgrade inventory quality to unlock more cars.";
+    container.appendChild(empty);
+    return;
+  }
+
+  const TYPE_LABELS = {
+    economy:'Economy', compact:'Compact', midsize:'Midsize', fullsize:'Full Size',
+    wagon:'Wagon', minivan:'Minivan', suv:'SUV', truck:'Truck',
+    sports:'Sports', luxury:'Luxury'
+  };
+
+  let lastType   = null;
+  let inStretch  = false;
+
+  allToShow.forEach(car => {
+    const cost      = buyCost(car);
+    const isStretch = state.cash < cost;
+    const carType   = car.carType || 'midsize';
+
+    // Stretch section header
+    if (isStretch && !inStretch) {
+      inStretch = true;
+      const hdr = document.createElement('div');
+      hdr.className = 'buy-type-header';
+      hdr.style.cssText = 'grid-column:1/-1;color:var(--text-dim);border-top:1px dashed var(--asphalt-lt);margin-top:8px;padding-top:12px;';
+      hdr.textContent = '— BEYOND REACH FOR NOW —';
+      container.appendChild(hdr);
+      lastType = null; // reset type header for stretch section
+    }
+
+    // Type divider
+    if (carType !== lastType) {
+      lastType = carType;
+      const hdr = document.createElement('div');
+      hdr.className = 'buy-type-header';
+      hdr.textContent = TYPE_LABELS[carType] || carType.toUpperCase();
+      container.appendChild(hdr);
+    }
+
+    const dots = Array.from({length:5}, (_,i) =>
+      `<div class="cond-dot${i < car.condition ? ' lit':''}"></div>`).join('');
+    const vetTag = car.veteranOnly
+      ? '<span style="font-size:9px;color:var(--red-bright);border:1px solid var(--red);padding:1px 4px;margin-left:4px;">VET</span>'
+      : '';
+
+    const card = document.createElement('div');
+    card.className = 'buy-car-card ' + (isStretch ? 'stretch' : 'affordable');
+    card.innerHTML = `
+      <div class="buy-car-top">
+        <div class="buy-car-name">${car.emoji} ${car.name}${vetTag}</div>
+      </div>
+      <div class="buy-car-rep">${car.rep}</div>
+      <div class="buy-cond">${dots}</div>
+      <div class="buy-price-row">
+        <div class="buy-cost">$${cost.toLocaleString()}</div>
+      </div>
+      <button class="btn-buy-car"
+        ${isStretch || state.cash < cost ? 'disabled' : ''}
+        onclick="buyCarDirect('${car.id}', ${cost})">
+        ${isStretch ? `$${(cost - state.cash).toLocaleString()} MORE NEEDED` : 'BUY — $' + cost.toLocaleString()}
+      </button>`;
+    container.appendChild(card);
+  });
+}
+
+function buyCarDirect(carId, cost) {
+  // Re-check at click time — state.cash may have changed since render
+  if (state.cash < cost) {
+    renderBuyCars(); // refresh buttons to reflect real cash
+    return;
+  }
+  const car = CARS.find(c => c.id === carId);
+  if (!car) return;
+
+  state.cash -= cost;
+  state.acquisitionCosts = state.acquisitionCosts || {};
+  state.acquisitionCosts[carId] = cost;
+  state.lotInventory = [...(state.lotInventory || []), carId];
+
+  playSoundUpgrade();
+  saveGame();
+  buildInventory();
+  document.getElementById('hud-cash').textContent    = '$' + state.cash.toLocaleString();
+  document.getElementById('buy-cash-display').textContent = '$' + state.cash.toLocaleString();
+  renderBuyCars(); // refresh — bought car gone, remaining buttons re-evaluated
+}
+
+// ═══════════════════════════════════════════════════════
+//  PHASE 7: SELLER SCHEDULING
+//  A seller replaces the customer every 4th day (approx).
+//  At reputation 3+ : every 3rd day.
+//  At reputation 4+ : every other day (more inventory churn).
+//  Uses deterministic day-based check so it's consistent on reload.
+// ═══════════════════════════════════════════════════════
+function shouldTodayBeSeller() {
+  const rep    = Math.round(state.reputation);
+  const period = rep >= 4 ? 2 : rep >= 3 ? 3 : 4;
+  return state.day > 1 && (state.day % period === 0);
+}
+
+function pickTodaySeller() {
+  // Rotate through sellers by day, weighted slightly toward ones with
+  // cars the player can actually use (not already in inventory)
+  const idx = (state.day) % SELLERS.length;
+  return SELLERS[idx];
+}
+
+// Pick a car for the seller based on their carPool tags and what makes sense
+function pickSellerCar(seller) {
+  const invTier = state.upgrades.inventory || 0;
+  const isVet   = state.difficulty === 'veteran';
+  // Cars that match at least one pool tag, not already owned, in accessible tier
+  const owned = state.lotInventory || [];
+  const pool  = CARS.filter(c => {
+    if (c.veteranOnly && !isVet) return false;
+    if ((c.tier || 0) > Math.min(invTier + 1, 2)) return false; // can bring tier+1 max
+    if (owned.includes(c.id)) return false;
+    return c.tags.some(t => seller.carPool.includes(t));
+  });
+  if (pool.length === 0) {
+    // Fallback: any car not owned
+    const fallback = CARS.filter(c => !owned.includes(c.id) && (!c.veteranOnly || isVet));
+    return fallback[Math.floor(Math.random() * fallback.length)] || CARS[0];
+  }
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+// ═══════════════════════════════════════════════════════
+//  PHASE 7: APPRAISAL DIALOGUE ENGINE
+// ═══════════════════════════════════════════════════════
+let appraisal = {
+  seller:       null,
+  car:          null,
+  round:        0,
+  mood:         60,
+  offerShift:   0,    // accumulated adjustments to final offer
+  finalOffer:   0,
+};
+
+function startAppraisal() {
+  const seller = pickTodaySeller();
+  const car    = pickSellerCar(seller);
+
+  appraisal = {
+    seller,
+    car,
+    round:      0,
+    mood:       60,
+    offerShift: 0,
+    finalOffer: 0,
+  };
+
+  // Switch dialogue screen to seller mode
+  const screen = document.getElementById('screen-dialogue');
+  screen.className = 'screen dlg-mode-seller';
+
+  // Set left panel — show seller info instead of car selector
+  document.getElementById('dlg-avatar').textContent     = seller.emoji;
+  document.getElementById('dlg-cust-name').textContent  = seller.name;
+  document.getElementById('dlg-archetype').textContent  = seller.archetype;
+  document.getElementById('dlg-archetype').style.opacity = '1';
+
+  // Hide car selector, show seller car panel
+  document.getElementById('dlg-car-select').style.display  = 'none';
+  document.getElementById('dlg-car-label').style.display   = 'none';
+  document.getElementById('dlg-car-req-note').style.display = 'none';
+  document.getElementById('dlg-car-rep').style.display     = 'none';
+
+  // Create/show seller car info panel
+  let sellerPanel = document.getElementById('dlg-seller-car-panel');
+  if (!sellerPanel) {
+    sellerPanel = document.createElement('div');
+    sellerPanel.id = 'dlg-seller-car-panel';
+    sellerPanel.className = 'dlg-seller-car';
+    // Insert into left panel after mood bar
+    const moodEl = document.querySelector('.dlg-mood');
+    moodEl.after(sellerPanel);
+  }
+  sellerPanel.style.display = 'flex';
+  sellerPanel.innerHTML = `
+    <div class="dlg-car-label">THEY'RE SELLING</div>
+    <div class="dlg-seller-car-name">${car.emoji} ${car.name}</div>
+    <div class="dlg-seller-car-rep">${car.rep}</div>
+    <div class="dlg-offer-display">
+      <div class="dlg-offer-label">Your Current Offer</div>
+      <div class="dlg-offer-val" id="dlg-offer-val">—</div>
+      <div class="dlg-offer-note" id="dlg-offer-note">Calculated in Round 3</div>
+    </div>`;
+
+  // Update mood bar
+  updateMoodBar();
+
+  // Clear speech area
+  document.getElementById('dlg-speech-area').innerHTML = '';
+  document.getElementById('dlg-back-btn').classList.remove('visible');
+
+  addNarratorBubble(seller.intro);
+  showScreen('screen-dialogue');
+  renderAppraisalRound();
+}
+
+function renderAppraisalRound() {
+  const round = appraisal.seller.rounds[appraisal.round];
+  document.getElementById('dlg-round-label').textContent =
+    'Round ' + (appraisal.round + 1) + ' of 3';
+
+  addCustomerBubble(appraisal.seller.name, round.sellerLine);
+
+  // Build choice buttons with appraisal-specific tags
+  const box = document.getElementById('dlg-choice-btns');
+  box.innerHTML = '';
+  round.choices.forEach((ch, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn ' + ch.cls;
+    btn.innerHTML = `<span class="choice-tag ${ch.cls.replace('-btn','')}-tag">${ch.tag.toUpperCase()}</span><span>${ch.label}</span>`;
+    btn.onclick = () => handleAppraisalChoice(idx);
+    box.appendChild(btn);
+  });
+
+  // Update offer display in round 3
+  if (appraisal.round === 2) {
+    const baseOffer = Math.round(appraisal.car.price * appraisal.seller.offerMultiplier);
+    const shift     = Math.round(baseOffer * appraisal.offerShift);
+    appraisal.finalOffer = Math.max(100, baseOffer - shift);
+    document.getElementById('dlg-offer-val').textContent =
+      '$' + appraisal.finalOffer.toLocaleString();
+    document.getElementById('dlg-offer-note').textContent =
+      'Based on your inspection approach';
+  }
+}
+
+function handleAppraisalChoice(idx) {
+  const round  = appraisal.seller.rounds[appraisal.round];
+  const choice = round.choices[idx];
+
+  document.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
+  addPlayerBubble(choice.text);
+
+  // Accumulate shifts
+  appraisal.offerShift += (choice.offerShift || 0);
+  appraisal.mood = Math.max(5, Math.min(100, appraisal.mood + (choice.moodDelta || 0)));
+  updateMoodBar();
+
+  setTimeout(() => {
+    addCustomerBubble(appraisal.seller.name, choice.nextLine);
+    if (appraisal.round === 2 && choice.outcome) {
+      setTimeout(() => resolveAppraisal(choice), 700);
+    } else {
+      appraisal.round++;
+      setTimeout(renderAppraisalRound, 500);
+    }
+  }, 380);
+}
+
+function resolveAppraisal(choice) {
+  const outcome = choice.outcome;
+  const car     = appraisal.car;
+
+  const labels = {
+    deal:     `✓ DEAL — Acquired ${car.name} for $${appraisal.finalOffer.toLocaleString()}`,
+    walk:     `✗ WALKED — They took the car elsewhere`,
+    offended: `✗ OFFENDED — They left. Reputation docked slightly.`,
+  };
+  addResultBubble(
+    outcome === 'deal' ? 'sold' : outcome === 'offended' ? 'blowup' : 'walkout',
+    labels[outcome] || outcome
+  );
+
+  if (outcome === 'deal') {
+    // Pay for the car
+    state.cash -= appraisal.finalOffer;
+    state.cash  = Math.max(0, state.cash);
+    state.acquisitionCosts = state.acquisitionCosts || {};
+    state.acquisitionCosts[car.id] = appraisal.finalOffer;
+    // Add to inventory
+    state.lotInventory = [...(state.lotInventory || []), car.id];
+    playSoundSold();
+  } else if (outcome === 'offended') {
+    state.reputation = Math.max(1, Math.round((state.reputation - 0.2) * 10) / 10);
+    playSoundBlowup();
+  } else {
+    playSoundWalkout();
+  }
+
+  state.dayDone = true;
+  state.lastResult = {
+    outcome: outcome === 'deal' ? 'sold' : outcome === 'offended' ? 'blowup' : 'walkout',
+    commission: 0,
+    customerName: appraisal.seller.name,
+    isSeller: true,
+    acquiredCar: outcome === 'deal' ? car.name : null,
+  };
+  saveGame();
+
+  setTimeout(() => {
+    document.getElementById('dlg-back-btn').classList.add('visible');
+    showAppraisalEod(outcome, car);
+  }, 1200);
+}
+
+function showAppraisalEod(outcome, car) {
+  const banner = document.getElementById('eod-banner');
+  const sub    = document.getElementById('eod-subtitle');
+
+  if (outcome === 'deal') {
+    banner.textContent = '🚗 Car Acquired';
+    banner.className   = 'eod-outcome-banner sold';
+    sub.textContent    = `${car.name} is now on your lot. Paid $${appraisal.finalOffer.toLocaleString()}. List price ${car.priceStr}.`;
+  } else if (outcome === 'walk') {
+    banner.textContent = '🚪 They Walked';
+    banner.className   = 'eod-outcome-banner walkout';
+    sub.textContent    = `${appraisal.seller.name} took the car elsewhere. No deal today.`;
+  } else {
+    banner.textContent = '💥 Scene Made';
+    banner.className   = 'eod-outcome-banner blowup';
+    sub.textContent    = `${appraisal.seller.name} left offended. Reputation took a small hit.`;
+  }
+
+  // Zero out commission display
+  document.getElementById('eod-commission').textContent = '$0';
+  document.getElementById('eod-commission').className   = 'eod-stat-val neutral';
+  document.getElementById('eod-total').textContent      = '$' + state.cash.toLocaleString();
+  const r = Math.max(1, Math.min(5, Math.round(state.reputation)));
+  document.getElementById('eod-rep').textContent = '★'.repeat(r) + '☆'.repeat(5-r);
+
+  // Stat shifts neutral for appraisal days
+  ['eod-charm-shift','eod-honest-shift','eod-closing-shift'].forEach(id => {
+    const el = document.getElementById(id);
+    el.textContent = '—';
+    el.className   = 'eod-shift-chip-val shift-flat';
+  });
+
+  setTimeout(() => openOverlay('overlay-eod'), 3000);
+}
+
+function leaveAppraisal() {
+  // Reset dialogue screen back to customer mode
+  const screen = document.getElementById('screen-dialogue');
+  screen.className = 'screen';
+  document.getElementById('dlg-car-select').style.display  = '';
+  document.getElementById('dlg-car-label').style.display   = '';
+  document.getElementById('dlg-car-rep').style.display     = '';
+  const sp = document.getElementById('dlg-seller-car-panel');
+  if (sp) sp.style.display = 'none';
+}
+
+
+// ═══════════════════════════════════════════════════════
+//  TRADE-IN SYSTEM
+//  Triggered after a sold/lowball outcome for eligible customers.
+//  Player can accept (reduces commission, gains car) or decline.
+// ═══════════════════════════════════════════════════════
+
+// Which customer IDs can offer trade-ins
+const TRADEIN_CUSTOMERS = {
+  status:   { line: "One more thing before I go — I'm obviously upgrading. What'll you give me for the old one?", emoji:'🚗' },
+  alpha:    { line: "Hey — take my old truck off my hands. Dave's gonna see this car anyway, might as well make it clean.", emoji:'🛻' },
+  retiree:  { line: "The wife's old car is just sitting in the driveway. You interested? Runs fine. Low miles for the age.", emoji:'🚗' },
+  outdoorsy:{ line: "My old Outback still runs. It's earned its retirement. Could be someone else's adventure.", emoji:'🚙' },
+  firsttime:{ line: "Oh — my mom said to ask. She has an old Corolla. Would you take a look at it?", emoji:'🚗' },
+  karen:    { line: "I have a car I need to be rid of immediately. It has a history. I'd rather not get into it.", emoji:'🚘' },
+};
+
+// Pick a trade-in car — not in inventory, matches customer vibe loosely
+function pickTradeInCar(customerId) {
+  const owned   = state.lotInventory || [];
+  const isVet   = state.difficulty === 'veteran';
+  const invTier = state.upgrades.inventory || 0;
+
+  // Tag preferences per customer
+  const prefs = {
+    status:    ['prestige','luxury','euro'],
+    alpha:     ['truck','american','fast','loud'],
+    retiree:   ['comfort','boring','reliable','american'],
+    outdoorsy: ['outdoorsy','offroad','reliable'],
+    firsttime: ['cheap','reliable','compact','boring'],
+    karen:     ['suv','practical','american','roomy'],
+  };
+
+  const preferred = prefs[customerId] || [];
+  const pool = CARS.filter(c => {
+    if (c.veteranOnly && !isVet) return false;
+    if (owned.includes(c.id)) return false;
+    // Can trade in cars one tier above current inventory
+    if ((c.tier || 0) > Math.min(invTier + 1, 2)) return false;
+    return c.tags.some(t => preferred.includes(t));
+  });
+
+  if (pool.length === 0) {
+    // Fallback: any affordable car not owned
+    const fallback = CARS.filter(c =>
+      !owned.includes(c.id) && (!c.veteranOnly || isVet)
+    );
+    return fallback[Math.floor(Math.random() * fallback.length)] || null;
+  }
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+// Main trade-in trigger — called from resolveOutcome after sale confirmed
+function offerTradeIn(finalCommission, capturedDeltas, finalOutcome) {
+  const custId = dlg.customer ? dlg.customer.id : null;
+  if (!custId || !TRADEIN_CUSTOMERS[custId]) {
+    // Not eligible — go straight to EOD
+    finishSaleAndShowEod(finalCommission, capturedDeltas, finalOutcome, null);
+    return;
+  }
+
+  const tradeConfig = TRADEIN_CUSTOMERS[custId];
+  const tradeCar    = pickTradeInCar(custId);
+  if (!tradeCar) {
+    finishSaleAndShowEod(finalCommission, capturedDeltas, finalOutcome, null);
+    return;
+  }
+
+  // Calculate trade-in value: 40–60% of list price
+  const pct        = 0.40 + Math.random() * 0.20;
+  const tradeValue = Math.round(tradeCar.price * pct);
+
+  // Adjusted commission: reduce by trade value (floor at 0)
+  const adjustedCommission = Math.max(0, finalCommission - tradeValue);
+
+  // Show trade-in bubble in chat after a short delay
+  setTimeout(() => {
+    showTradeInOffer(tradeConfig, tradeCar, tradeValue,
+      finalCommission, adjustedCommission, capturedDeltas, finalOutcome);
+  }, 1200);
+}
+
+function showTradeInOffer(tradeConfig, tradeCar, tradeValue,
+    originalCommission, adjustedCommission, capturedDeltas, finalOutcome) {
+
+  const area = document.getElementById('dlg-speech-area');
+  const el   = document.createElement('div');
+  el.className = 'bubble-tradein';
+
+  // Commission cost to accept: how much commission is sacrificed
+  const commissionCost = originalCommission - adjustedCommission;
+  const costLabel = commissionCost >= originalCommission
+    ? 'your entire commission'
+    : `$${commissionCost.toLocaleString()} of your commission`;
+
+  el.innerHTML = `
+    <div class="tradein-header">🔄 TRADE-IN OFFER</div>
+    <div style="font-size:14px;color:var(--cream-dim);font-style:italic;margin-bottom:14px;">
+      "${tradeConfig.line}"
+    </div>
+    <div class="tradein-car-name">${tradeCar.emoji} ${tradeCar.name}</div>
+    <div class="tradein-car-rep" style="margin-bottom:14px;">${tradeCar.rep}</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;
+         border-left:3px solid var(--orange);padding-left:10px;line-height:1.6;">
+      Accepting this trade-in will cost you <strong style="color:var(--orange)">${costLabel}</strong>.
+      The car goes on your lot — what you do with it is up to you.
+    </div>
+    <div class="tradein-buttons">
+      <button class="btn-tradein-accept" id="btn-ti-accept">
+        TAKE THE CAR
+      </button>
+      <button class="btn-tradein-decline" id="btn-ti-decline">
+        PASS — KEEP $${originalCommission.toLocaleString()}
+      </button>
+    </div>
+  `;
+
+  area.appendChild(el);
+  setTimeout(() => area.scrollTop = area.scrollHeight, 40);
+
+  document.getElementById('btn-ti-accept').onclick = () => {
+    acceptTradeIn(tradeCar, tradeValue, adjustedCommission,
+      originalCommission, capturedDeltas, finalOutcome, el);
+  };
+  document.getElementById('btn-ti-decline').onclick = () => {
+    declineTradeIn(originalCommission, capturedDeltas, finalOutcome, el);
+  };
+}
+
+function acceptTradeIn(tradeCar, tradeValue, adjustedCommission,
+    originalCommission, capturedDeltas, finalOutcome, offerEl) {
+
+  // Lock buttons
+  offerEl.querySelectorAll('button').forEach(b => b.disabled = true);
+
+  // Adjust cash: we already added originalCommission in resolveOutcome,
+  // so we subtract the difference (trade value absorbed from commission)
+  const commissionDiff = originalCommission - adjustedCommission;
+  state.cash -= commissionDiff;
+  state.cash  = Math.max(0, state.cash);
+
+  // Add car to inventory at trade value
+  state.acquisitionCosts = state.acquisitionCosts || {};
+  state.acquisitionCosts[tradeCar.id] = tradeValue;
+  state.lotInventory = [...(state.lotInventory || []), tradeCar.id];
+
+  // Update lastResult to reflect trade
+  state.lastResult.commission     = adjustedCommission;
+  state.lastResult.tradeIn        = tradeCar.name;
+  state.lastResult.tradeInValue   = tradeValue;
+
+  // Confirm bubble
+  addPlayerBubble(`"Deal. ${tradeCar.name} goes on the lot. You take the ${dlg.pickedCar ? dlg.pickedCar.name : 'car'}."`);
+  addNarratorBubble(`${tradeCar.name} added to your inventory. Acquired for $${tradeValue.toLocaleString()}.`);
+
+  playSoundUpgrade();
+  saveGame();
+
+  setTimeout(() => {
+    document.getElementById('dlg-back-btn').classList.add('visible');
+    showEndOfDay(state.lastResult, capturedDeltas);
+  }, 2000);
+}
+
+function declineTradeIn(originalCommission, capturedDeltas, finalOutcome, offerEl) {
+  offerEl.querySelectorAll('button').forEach(b => b.disabled = true);
+  addPlayerBubble('"I appreciate it — but let\'s keep it simple. Just the sale today."');
+  finishSaleAndShowEod(originalCommission, capturedDeltas, finalOutcome, null);
+}
+
+function finishSaleAndShowEod(commission, capturedDeltas, finalOutcome, tradeIn) {
+  setTimeout(() => {
+    document.getElementById('dlg-back-btn').classList.add('visible');
+    showEndOfDay(state.lastResult, capturedDeltas);
+  }, 2000);
+}
+
 // ═══════════════════════════════════════════════════════
 //  OVERLAY SYSTEM
 // ═══════════════════════════════════════════════════════
@@ -3175,6 +4660,9 @@ function openOverlay(id) {
   }
   if (id === 'overlay-perks') {
     renderPerkTree();
+  }
+  if (id === 'overlay-buy') {
+    renderBuyCars();
   }
   document.getElementById(id).classList.add('active');
 }
@@ -3292,10 +4780,15 @@ function renderLotStatus() {
 //  WIN CONDITION
 // ═══════════════════════════════════════════════════════
 function checkWinCondition() {
-  // Win = all 5 base upgrades at max tier
+  // Win = all 5 base upgrades at max tier AND reputation >= 4 stars
   const baseKeys = ['signage','coffee','inventory','appraisal','aesthetics'];
   const allMaxed = baseKeys.every(k => (state.upgrades[k] || 0) >= 3);
   if (!allMaxed) return;
+  if (state.reputation < 4) {
+    // Show a nudge if upgrades are maxed but rep isn't there yet
+    showRepNudge();
+    return;
+  }
 
   const repStars = Math.round(state.reputation);
   const repStr   = '★'.repeat(repStars) + '☆'.repeat(5 - repStars);
@@ -3329,9 +4822,12 @@ function showEndOfDay(result, statDeltas) {
     walkout: '🚪 Walked Out',
     blowup:  '💥 Scene Made'
   };
+  const tradeNote = result.tradeIn
+    ? ` + acquired ${result.tradeIn} ($${result.tradeInValue.toLocaleString()} trade value).`
+    : '';
   const subtitles = {
-    sold:    `${customerName} drove off happy. Probably.`,
-    lowball: `${customerName} drove a hard bargain. You'll get them next time.`,
+    sold:    `${customerName} drove off happy. Probably.${tradeNote}`,
+    lowball: `${customerName} drove a hard bargain.${tradeNote}`,
     walkout: `${customerName} walked. Not every day is a sale. That's the game.`,
     blowup:  `${customerName} made a scene. Your reputation took a small hit. Shake it off.`
   };
@@ -3376,6 +4872,168 @@ function openUpgradesFromEod() {
 function eodNextDay() {
   closeOverlay('overlay-eod');
   advanceDay();
+}
+
+
+// ═══════════════════════════════════════════════════════
+//  REPUTATION NUDGE
+//  Shown when all upgrades are maxed but rep < 4 stars.
+//  Fires from checkWinCondition instead of win screen.
+// ═══════════════════════════════════════════════════════
+function showRepNudge() {
+  const existing = document.getElementById('rep-nudge');
+  if (existing) return;  // already showing
+  const rep   = Math.round(state.reputation);
+  const stars = '★'.repeat(rep) + '☆'.repeat(5 - rep);
+  const nudge = document.createElement('div');
+  nudge.id = 'rep-nudge';
+  nudge.style.cssText = `
+    position:fixed; bottom:60px; left:50%; transform:translateX(-50%);
+    background:var(--asphalt-mid); border:1px solid var(--orange);
+    border-top:3px solid var(--orange); padding:16px 24px;
+    font-family:'Courier Prime',monospace; z-index:600;
+    max-width:400px; width:90%; animation:slideUp 0.3s ease both;
+  `;
+  nudge.innerHTML = `
+    <div style="font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:3px;
+         color:var(--orange);margin-bottom:8px;">⚠ NOT QUITE YET</div>
+    <div style="font-size:13px;color:var(--cream-dim);margin-bottom:12px;line-height:1.6;">
+      The lot is fully upgraded — impressive. But the street hasn't decided you've earned it yet.
+      You need <strong style="color:var(--yellow)">4 stars</strong> to win.
+      You're at <strong style="color:var(--orange)">${stars}</strong>.
+      Keep selling.
+    </div>
+    <button onclick="document.getElementById('rep-nudge').remove()"
+      style="width:100%;padding:8px;background:var(--orange);color:var(--cream);
+             border:none;border-bottom:3px solid #b7640a;
+             font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;
+             letter-spacing:2px;cursor:pointer;">
+      UNDERSTOOD
+    </button>
+  `;
+  document.body.appendChild(nudge);
+  setTimeout(() => { if (nudge.parentNode) nudge.remove(); }, 7000);
+}
+
+// ═══════════════════════════════════════════════════════
+//  TUTORIAL SYSTEM
+// ═══════════════════════════════════════════════════════
+let tutStep = 0;
+
+const TUTORIAL_STEPS = [
+  {
+    icon: '🚗',
+    title: 'Welcome to the Lot',
+    body: `You are a <strong>used car salesman</strong>. Your lot is a patch of dirt with eight cars and a coffee maker that works most of the time.<br><br>
+           Every day a customer shows up. Your job is to <strong>read them, match them to a car, and close the deal</strong>. The character you play is enthusiastic, opportunistic, and <em>ethically flexible</em>. This is a game of caricature and lighthearted fun.`,
+    detail: `<div class="detail-row">🎯 <span>Win by fully upgrading your lot and earning a 4-star reputation</span></div>
+             <div class="detail-row">💰 <span>Every sale earns commission — use it to buy upgrades</span></div>
+             <div class="detail-row">🔄 <span>Each customer is different. No two days are the same.</span></div>`
+  },
+  {
+    icon: '👥',
+    title: 'Know Your Customer',
+    body: `Each customer has a <strong>personality archetype</strong> — an Overconfident Teen, a Bargain Hunter, a Karen, a Retiree. Each type wants something different and responds differently to your approach.<br><br>
+           In <em>Rookie mode</em>, their archetype and budget are shown to help you learn. In <em>Veteran mode</em>, you read the room yourself.`,
+    detail: `<div class="detail-row">😎 <span><strong style="color:var(--yellow)">Teen</strong> — wants to look cool. Cares about image over practicality.</span></div>
+             <div class="detail-row">🧾 <span><strong style="color:var(--yellow)">Bargain Hunter</strong> — knows every price. Has a spreadsheet. Has macros.</span></div>
+             <div class="detail-row">👴 <span><strong style="color:var(--yellow)">Retiree</strong> — patient, sharp, and has seen every trick you know.</span></div>`
+  },
+  {
+    icon: '🎭',
+    title: 'The Pitch',
+    body: `Each sale plays out over <strong>3 rounds of dialogue</strong>. The customer talks. You choose how to respond.<br><br>
+           In <strong>Round 2</strong>, pick a car from your inventory to pitch — this matters. A Firebird for a nervous first-time buyer works against you. A reliable Corolla for a Bargain Hunter works in your favor.`,
+    detail: `<div class="detail-row"><span class="detail-tag tag-c">CHARM</span><span>Flattery, humor, building rapport. Best with social types.</span></div>
+             <div class="detail-row"><span class="detail-tag tag-h">HONEST</span><span>Straight talk. Builds trust. Rewards long-term reputation.</span></div>
+             <div class="detail-row"><span class="detail-tag tag-hu">HUSTLE</span><span>Pressure tactics. Higher risk, sometimes higher reward.</span></div>
+             <div class="detail-row"><span class="detail-tag tag-w">WILD</span><span>Unpredictable. Could be brilliant. Could be a disaster.</span></div>`
+  },
+  {
+    icon: '⬆',
+    title: 'Growing the Lot',
+    body: `Commission goes into <strong>lot upgrades</strong> — better signage, stronger coffee, cleaner inventory, faster appraisals, improved aesthetics. Each upgrade improves your lot visually and mechanically.<br><br>
+           The <strong>Perk Tree</strong> lets you specialize your sales style. You can't master every branch — pick one and commit to it.`,
+    detail: `<div class="detail-row">☕ <span><strong style="color:var(--yellow)">Coffee upgrade</strong> — customers arrive in a better mood</span></div>
+             <div class="detail-row">🪧 <span><strong style="color:var(--yellow)">Signage upgrade</strong> — attracts better customers over time</span></div>
+             <div class="detail-row">🦈 <span><strong style="color:var(--yellow)">The Closer perk</strong> — hustle choices land more reliably</span></div>
+             <div class="detail-row">📋 <span><strong style="color:var(--yellow)">Straight Shooter perk</strong> — honest choices build reputation faster</span></div>`
+  },
+  {
+    icon: '🏆',
+    title: 'Winning',
+    body: `Max out all <strong>5 lot upgrades</strong> and earn a <strong>4-star reputation</strong>. That's the whole job.<br><br>
+           You can buy upgrades without a great reputation. You can have a great reputation without all the upgrades. But you need <em>both</em> to win. The street decides when you've earned it.`,
+    detail: `<div class="detail-row">⬆ <span>Signage, Coffee, Inventory, Appraisal, Aesthetics — all to Tier 3</span></div>
+             <div class="detail-row">★ <span>Reputation of 4 stars or higher</span></div>
+             <div class="detail-row">💡 <span>Tip: honest choices build reputation more reliably than hustle</span></div>
+             <div class="detail-row">💡 <span>Tip: match the right car to the right customer for a mood boost</span></div>`
+  }
+];
+
+function startTutorial() {
+  tutStep = 0;
+  renderTutStep();
+  showScreen('screen-tutorial');
+}
+
+function renderTutStep() {
+  const step = TUTORIAL_STEPS[tutStep];
+  const total = TUTORIAL_STEPS.length;
+
+  // Pip track
+  for (let i = 0; i < total; i++) {
+    const pip = document.getElementById('tpip-' + i);
+    if (!pip) continue;
+    pip.className = 't-pip' +
+      (i === tutStep ? ' active' : i < tutStep ? ' done' : '');
+  }
+
+  // Animate card out briefly then in
+  const card = document.getElementById('tut-card');
+  card.style.animation = 'none';
+  card.offsetHeight; // force reflow
+  card.style.animation = 'tutCardIn 0.3s ease both';
+
+  document.getElementById('tut-icon').textContent   = step.icon;
+  document.getElementById('tut-num').textContent    = `Step ${tutStep + 1} of ${total}`;
+  document.getElementById('tut-title').textContent  = step.title;
+  document.getElementById('tut-body').innerHTML     = step.body;
+  document.getElementById('tut-detail').innerHTML   = step.detail;
+
+  // Back button
+  const backBtn = document.getElementById('tut-back');
+  backBtn.disabled = tutStep === 0;
+
+  // Next button
+  const nextBtn = document.getElementById('tut-next');
+  const isLast  = tutStep === total - 1;
+  nextBtn.textContent = isLast ? "LET'S GO →" : 'NEXT →';
+}
+
+function tutNav(dir) {
+  const total = TUTORIAL_STEPS.length;
+  const next  = tutStep + dir;
+
+  if (next >= total) {
+    // Done — mark seen, go to lot
+    finishTutorial();
+    return;
+  }
+  if (next < 0) return;
+  tutStep = next;
+  renderTutStep();
+}
+
+function skipTutorial() {
+  finishTutorial();
+}
+
+function finishTutorial() {
+  state.tutorialSeen = true;
+  saveGame();
+  buildLot();
+  showScreen('screen-lot');
 }
 
 // ═══════════════════════════════════════════════════════
@@ -3493,12 +5151,16 @@ function updateBeginButton() {
 }
 function beginGame() {
   if (!state.salesmanName) return;
-  // Assign first customer for day 1
+  state.todayIsSeller    = false;  // day 1 is always a customer
   state.todayCustomerIdx = getNextCustomerIndex();
   initAudio();
   saveGame();
-  buildLot();
-  showScreen('screen-lot');
+  if (!state.tutorialSeen) {
+    startTutorial();
+  } else {
+    buildLot();
+    showScreen('screen-lot');
+  }
 }
 
 // ═══════════════════════════════════════════════════════
@@ -3711,9 +5373,13 @@ function loadDailyCustomer() {
     const r = state.lastResult;
     if (r) {
       const hl = { sold:'💰 Sale closed!', lowball:'🤝 Lowball.', walkout:'🚪 Walked out.', blowup:'💥 Scene made.' };
-      document.getElementById('day-result-headline').textContent = hl[r.outcome] || 'Day done.';
-      document.getElementById('day-result-detail').textContent   =
-        r.commission > 0 ? `+$${r.commission} commission earned.` : 'No sale today.';
+      document.getElementById('day-result-headline').textContent = r.isSeller
+        ? (r.acquiredCar ? `🚗 Acquired: ${r.acquiredCar}` : '🚪 No deal today.')
+        : (hl[r.outcome] || 'Day done.');
+      document.getElementById('day-result-detail').textContent =
+        r.isSeller
+          ? (r.acquiredCar ? `${r.acquiredCar} is now on your lot.` : 'The seller moved on.')
+          : (r.commission > 0 ? `+$${r.commission} commission earned.` : 'No sale today.');
     }
   } else {
     engageBtn.disabled = false;
@@ -3721,26 +5387,41 @@ function loadDailyCustomer() {
     nextDayBtn.classList.remove('visible');
   }
 
-  const c = getTodayCustomer();
-  const isRookie = state.difficulty !== 'veteran';
-
-  document.getElementById('customer-avatar').textContent = c.emoji;
-  document.getElementById('customer-name').textContent   = c.name;
-
-  // Rookie: show archetype + budget hint. Veteran: just a vague tease.
-  document.getElementById('customer-archetype').textContent = isRookie
-    ? `${c.archetype} — Budget ~$${c.budget.toLocaleString()}`
-    : 'Unknown — size \'em up';
-
-  document.getElementById('customer-quote').innerHTML =
-    `<em>"${c.rounds[0].customerLine}"</em>`;
+  if (state.todayIsSeller) {
+    const seller    = pickTodaySeller();
+    const sellerCar = pickSellerCar(seller);
+    document.getElementById('customer-avatar').textContent    = seller.emoji;
+    document.getElementById('customer-name').textContent      = seller.name;
+    document.getElementById('customer-archetype').textContent = seller.archetype;
+    document.getElementById('customer-quote').innerHTML =
+      `<em>"${seller.rounds[0].sellerLine}"</em>`;
+    engageBtn.textContent = '🔍 APPRAISE THE CAR';
+    engageBtn.onclick     = startAppraisal;
+    const lbl = document.querySelector('.daily-card .section-label');
+    if (lbl) lbl.textContent = "TODAY'S SELLER";
+  } else {
+    const c = getTodayCustomer();
+    const isRookie = state.difficulty !== 'veteran';
+    document.getElementById('customer-avatar').textContent = c.emoji;
+    document.getElementById('customer-name').textContent   = c.name;
+    document.getElementById('customer-archetype').textContent = isRookie
+      ? `${c.archetype} — Budget ~$${c.budget.toLocaleString()}`
+      : "Unknown — size 'em up";
+    document.getElementById('customer-quote').innerHTML =
+      `<em>"${c.rounds[0].customerLine}"</em>`;
+    engageBtn.textContent = '⚡ MAKE YOUR MOVE';
+    engageBtn.onclick     = startDialogue;
+    const lbl = document.querySelector('.daily-card .section-label');
+    if (lbl) lbl.textContent = "TODAY'S CUSTOMER";
+  }
 }
 
 function advanceDay() {
   state.day++;
   state.dayDone          = false;
   state.lastResult       = null;
-  state.todayCustomerIdx = getNextCustomerIndex();
+  state.todayIsSeller    = shouldTodayBeSeller();
+  state.todayCustomerIdx = state.todayIsSeller ? null : getNextCustomerIndex();
   playSoundNextDay();
   saveGame();
   buildLot();
@@ -3925,17 +5606,27 @@ function resolveOutcome(choice) {
 
   saveGame();
 
-  // Show back button then auto-open EOD overlay after a beat
+  // Show back button
   setTimeout(() => {
     document.getElementById('dlg-back-btn').classList.add('visible');
   }, 500);
-  setTimeout(() => {
-    showEndOfDay(state.lastResult, capturedDeltas);
-  }, 3000);
+
+  // For sold/lowball: check for trade-in offer before showing EOD
+  // For walkout/blowup: go straight to EOD
+  if (finalOutcome === 'sold' || finalOutcome === 'lowball') {
+    setTimeout(() => {
+      offerTradeIn(finalCommission, capturedDeltas, finalOutcome);
+    }, 1800);
+  } else {
+    setTimeout(() => {
+      showEndOfDay(state.lastResult, capturedDeltas);
+    }, 3000);
+  }
 }
 
 function leaveDialogue() {
   closeOverlay('overlay-eod');
+  if (state.todayIsSeller) leaveAppraisal();
   buildLot();
   showScreen('screen-lot');
 }
