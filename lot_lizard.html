@@ -2634,8 +2634,7 @@ function freshState() {
     lotInventory: ['corolla94', 'explorer98', 'civic01', 'neon99', 'silverado03', 'bmw97', 'outback02', 'firebird95'],
     tutorialSeen: false,
     acquisitionCosts: {},  // carId → price paid
-    todayIsSeller: false,
-    todaySellerIdx: null
+
   };
 }
 
@@ -2643,6 +2642,21 @@ let state = freshState();
 
 // Dialogue runtime — not saved to localStorage
 let dlg = { customer:null, round:0, mood:60, pickedCar:null, statDeltas:{charm:0,honesty:0,closing:0} };
+let eodTimers = [];  // tracks pending EOD-related timeouts so they can be cancelled
+
+function scheduleEod(fn, delay) {
+  // Cancel any existing EOD timers then schedule a new one
+  eodTimers.forEach(t => clearTimeout(t));
+  eodTimers = [];
+  const t = setTimeout(fn, delay);
+  eodTimers.push(t);
+  return t;
+}
+
+function cancelEodTimers() {
+  eodTimers.forEach(t => clearTimeout(t));
+  eodTimers = [];
+}
 
 
 
@@ -4458,7 +4472,7 @@ function showAppraisalEod(outcome, car) {
     el.className   = 'eod-shift-chip-val shift-flat';
   });
 
-  setTimeout(() => openOverlay('overlay-eod'), 3000);
+  scheduleEod(() => openOverlay('overlay-eod'), 1800);
 }
 
 function leaveAppraisal() {
@@ -4526,9 +4540,14 @@ function pickTradeInCar(customerId) {
 
 // Main trade-in trigger — called from resolveOutcome after sale confirmed
 function offerTradeIn(finalCommission, capturedDeltas, finalOutcome) {
+  // Snapshot lastResult immediately — state may change before timeouts fire
+  if (!state.lastResult) {
+    return; // nothing to work with
+  }
+  state._lastResultSnapshot = Object.assign({}, state.lastResult);
+
   const custId = dlg.customer ? dlg.customer.id : null;
   if (!custId || !TRADEIN_CUSTOMERS[custId]) {
-    // Not eligible — go straight to EOD
     finishSaleAndShowEod(finalCommission, capturedDeltas, finalOutcome, null);
     return;
   }
@@ -4630,10 +4649,11 @@ function acceptTradeIn(tradeCar, tradeValue, adjustedCommission,
   playSoundUpgrade();
   saveGame();
 
-  setTimeout(() => {
+  const snapshotResult = Object.assign({}, state.lastResult);
+  scheduleEod(() => {
     document.getElementById('dlg-back-btn').classList.add('visible');
-    showEndOfDay(state.lastResult, capturedDeltas);
-  }, 2000);
+    showEndOfDay(snapshotResult, capturedDeltas);
+  }, 1500);
 }
 
 function declineTradeIn(originalCommission, capturedDeltas, finalOutcome, offerEl) {
@@ -4643,10 +4663,11 @@ function declineTradeIn(originalCommission, capturedDeltas, finalOutcome, offerE
 }
 
 function finishSaleAndShowEod(commission, capturedDeltas, finalOutcome, tradeIn) {
-  setTimeout(() => {
+  const snapshotResult = state._lastResultSnapshot || Object.assign({}, state.lastResult) || {};
+  scheduleEod(() => {
     document.getElementById('dlg-back-btn').classList.add('visible');
-    showEndOfDay(state.lastResult, capturedDeltas);
-  }, 2000);
+    showEndOfDay(snapshotResult, capturedDeltas);
+  }, 1500);
 }
 
 // ═══════════════════════════════════════════════════════
@@ -4814,6 +4835,7 @@ function checkWinCondition() {
 //  END-OF-DAY OVERLAY
 // ═══════════════════════════════════════════════════════
 function showEndOfDay(result, statDeltas) {
+  if (!result) return;  // guard against null (can happen if advanceDay fires first)
 
   const { outcome, commission, customerName } = result;
   const bannerText = {
@@ -4870,6 +4892,7 @@ function openUpgradesFromEod() {
 }
 
 function eodNextDay() {
+  cancelEodTimers();
   closeOverlay('overlay-eod');
   advanceDay();
 }
@@ -5151,7 +5174,6 @@ function updateBeginButton() {
 }
 function beginGame() {
   if (!state.salesmanName) return;
-  state.todayIsSeller    = false;  // day 1 is always a customer
   state.todayCustomerIdx = getNextCustomerIndex();
   initAudio();
   saveGame();
@@ -5373,13 +5395,9 @@ function loadDailyCustomer() {
     const r = state.lastResult;
     if (r) {
       const hl = { sold:'💰 Sale closed!', lowball:'🤝 Lowball.', walkout:'🚪 Walked out.', blowup:'💥 Scene made.' };
-      document.getElementById('day-result-headline').textContent = r.isSeller
-        ? (r.acquiredCar ? `🚗 Acquired: ${r.acquiredCar}` : '🚪 No deal today.')
-        : (hl[r.outcome] || 'Day done.');
+      document.getElementById('day-result-headline').textContent = hl[r.outcome] || 'Day done.';
       document.getElementById('day-result-detail').textContent =
-        r.isSeller
-          ? (r.acquiredCar ? `${r.acquiredCar} is now on your lot.` : 'The seller moved on.')
-          : (r.commission > 0 ? `+$${r.commission} commission earned.` : 'No sale today.');
+        r.commission > 0 ? `+$${r.commission} commission earned.` : 'No sale today.';
     }
   } else {
     engageBtn.disabled = false;
@@ -5387,41 +5405,27 @@ function loadDailyCustomer() {
     nextDayBtn.classList.remove('visible');
   }
 
-  if (state.todayIsSeller) {
-    const seller    = pickTodaySeller();
-    const sellerCar = pickSellerCar(seller);
-    document.getElementById('customer-avatar').textContent    = seller.emoji;
-    document.getElementById('customer-name').textContent      = seller.name;
-    document.getElementById('customer-archetype').textContent = seller.archetype;
-    document.getElementById('customer-quote').innerHTML =
-      `<em>"${seller.rounds[0].sellerLine}"</em>`;
-    engageBtn.textContent = '🔍 APPRAISE THE CAR';
-    engageBtn.onclick     = startAppraisal;
-    const lbl = document.querySelector('.daily-card .section-label');
-    if (lbl) lbl.textContent = "TODAY'S SELLER";
-  } else {
-    const c = getTodayCustomer();
-    const isRookie = state.difficulty !== 'veteran';
-    document.getElementById('customer-avatar').textContent = c.emoji;
-    document.getElementById('customer-name').textContent   = c.name;
-    document.getElementById('customer-archetype').textContent = isRookie
-      ? `${c.archetype} — Budget ~$${c.budget.toLocaleString()}`
-      : "Unknown — size 'em up";
-    document.getElementById('customer-quote').innerHTML =
-      `<em>"${c.rounds[0].customerLine}"</em>`;
-    engageBtn.textContent = '⚡ MAKE YOUR MOVE';
-    engageBtn.onclick     = startDialogue;
-    const lbl = document.querySelector('.daily-card .section-label');
-    if (lbl) lbl.textContent = "TODAY'S CUSTOMER";
-  }
+  const c = getTodayCustomer();
+  const isRookie = state.difficulty !== 'veteran';
+  document.getElementById('customer-avatar').textContent = c.emoji;
+  document.getElementById('customer-name').textContent   = c.name;
+  document.getElementById('customer-archetype').textContent = isRookie
+    ? `${c.archetype} — Budget ~$${c.budget.toLocaleString()}`
+    : "Unknown — size 'em up";
+  document.getElementById('customer-quote').innerHTML =
+    `<em>"${c.rounds[0].customerLine}"</em>`;
+  engageBtn.textContent = '⚡ MAKE YOUR MOVE';
+  engageBtn.onclick     = startDialogue;
+  const lbl = document.querySelector('.daily-card .section-label');
+  if (lbl) lbl.textContent = "TODAY'S CUSTOMER";
 }
 
 function advanceDay() {
+  cancelEodTimers();  // kill any pending EOD popup before moving to next day
   state.day++;
   state.dayDone          = false;
   state.lastResult       = null;
-  state.todayIsSeller    = shouldTodayBeSeller();
-  state.todayCustomerIdx = state.todayIsSeller ? null : getNextCustomerIndex();
+  state.todayCustomerIdx = getNextCustomerIndex();
   playSoundNextDay();
   saveGame();
   buildLot();
@@ -5606,27 +5610,27 @@ function resolveOutcome(choice) {
 
   saveGame();
 
-  // Show back button
+  // Show back button quickly
   setTimeout(() => {
     document.getElementById('dlg-back-btn').classList.add('visible');
-  }, 500);
+  }, 300);
 
-  // For sold/lowball: check for trade-in offer before showing EOD
-  // For walkout/blowup: go straight to EOD
+  // Schedule EOD — stored so it can be cancelled if player navigates away
   if (finalOutcome === 'sold' || finalOutcome === 'lowball') {
-    setTimeout(() => {
+    scheduleEod(() => {
       offerTradeIn(finalCommission, capturedDeltas, finalOutcome);
-    }, 1800);
+    }, 1500);
   } else {
-    setTimeout(() => {
-      showEndOfDay(state.lastResult, capturedDeltas);
-    }, 3000);
+    const snapshotResult = Object.assign({}, state.lastResult);
+    scheduleEod(() => {
+      showEndOfDay(snapshotResult, capturedDeltas);
+    }, 1800);
   }
 }
 
 function leaveDialogue() {
+  cancelEodTimers();
   closeOverlay('overlay-eod');
-  if (state.todayIsSeller) leaveAppraisal();
   buildLot();
   showScreen('screen-lot');
 }
