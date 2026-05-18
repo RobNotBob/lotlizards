@@ -731,6 +731,72 @@ const CUSTOMERS = [
     ]
   },
 
+
+  // 8 ── RETIREE
+  {
+    id:'retiree', name:"Earl", archetype:"The Retiree", emoji:"👴", budget:2000,
+    goodTags:['reliable','boring','cheap'], badTags:['fast','loud'],
+    intro:"Earl arrives ten minutes before you open and has been walking the lot slowly since then. He knows more about these cars than you do. He is in no hurry. He has nowhere else to be.",
+    rounds:[
+      { customerLine:"I had a Corolla back in the day. Drove it 240,000 miles. Gave it to my nephew. He drove it another 80,000 before the transmission went. Good cars.",
+        choices:[
+          { tag:'charm',  cls:'charm-btn',  label:"Invite the story",
+            text:"\"That transmission lasted 80,000 miles after 240,000? Your nephew drove it hard.\"",
+            moodDelta:+15, statHint:{charm:+4},
+            nextLine:"Ha. He did. He's a good kid. Doesn't check the oil but a good kid." },
+          { tag:'honest', cls:'honest-btn', label:"Affirm the reputation",
+            text:"\"That's the thing about a reliable car — it outlasts the reason you bought it. Same DNA in what we have here.\"",
+            moodDelta:+20, statHint:{honesty:+5},
+            nextLine:"What's the mileage on that one?" },
+          { tag:'hustle', cls:'hustle-btn', label:"Steer toward something bigger",
+            text:"\"We also have something with more room if you ever need it.\"",
+            moodDelta:-10, statHint:{closing:+1},
+            nextLine:"I don't need room. I'm 71. I'm done needing room." },
+          { tag:'wild',   cls:'wild-btn',   label:"Ask about the nephew",
+            text:"\"Is the nephew still driving?\"",
+            moodDelta:+12, statHint:{charm:+3},
+            nextLine:"No, he bought something German. He'll regret it. They all regret it." },
+        ]},
+      { customerLine:"That one over there. How many miles. Be straight with me — I can tell when someone's being straight.",
+        choices:[
+          { tag:'charm',  cls:'charm-btn',  label:"Compliment his instincts",
+            text:"\"I can tell you can tell. Good miles for the age — mostly highway, which matters.\"",
+            moodDelta:+8, statHint:{charm:+2},
+            nextLine:"Highway miles are different. My wife always said that. She was right about most things." },
+          { tag:'honest', cls:'honest-btn', label:"Give him the exact number",
+            text:"\"High miles. Highway majority. Paint is tired but the drivetrain is solid — this type runs to 250k with basic care.\"",
+            moodDelta:+25, statHint:{honesty:+7},
+            nextLine:"You're not lying to me about the highway miles?" },
+          { tag:'hustle', cls:'hustle-btn', label:"Soften the number",
+            text:"\"They're high, but for this make it's practically broken in.\"",
+            moodDelta:-15, statHint:{closing:+1,honesty:-4},
+            nextLine:"I asked you to be straight with me. How many miles. The number." },
+          { tag:'wild',   cls:'wild-btn',   label:"Let him inspect it",
+            text:"\"Pop the hood. You clearly know what you're looking at. Tell me what you see.\"",
+            moodDelta:+18, statHint:{honesty:+5,charm:+2},
+            nextLine:"[three minutes later] Belts are okay. Coolant looks recent. Somebody maintained this. Alright." },
+        ]},
+      { customerLine:"Price seems high for the miles. I'm thinking considerably less. And I'm not in a rush. I'll come back.",
+        choices:[
+          { tag:'charm',  cls:'charm-btn',  label:"Enjoy the negotiation",
+            text:"\"Earl, I've been waiting for someone who knows how to negotiate. Split the difference. Shake on it.\"",
+            moodDelta:+10, statHint:{charm:+4}, outcome:'lowball', commission:225,
+            nextLine:"$975. Flattery costs you $75. I respect that you tried though." },
+          { tag:'honest', cls:'honest-btn', label:"Split it plainly",
+            text:"\"Split the difference. You know it's worth it and I know you know.\"",
+            moodDelta:+20, statHint:{honesty:+6}, outcome:'sold', commission:315,
+            nextLine:"Yep. Split the difference. Cash okay? I don't trust cards." },
+          { tag:'hustle', cls:'hustle-btn', label:"Call his bluff",
+            text:"\"Come back Friday. It'll probably still be here. But probably not at this price.\"",
+            moodDelta:-20, statHint:{closing:+1,honesty:-3}, outcome:'walkout', commission:0,
+            nextLine:"Son, I've been buying cars since before you were born. I know a bluff. Good day." },
+          { tag:'wild',   cls:'wild-btn',   label:"Ask what his wife would say",
+            text:"\"You said she was right about most things. What would she say about this one?\"",
+            moodDelta:+15, statHint:{charm:+5}, outcome:'lowball', commission:190,
+            nextLine:"...She'd say buy it, but not at that price. She was careful. $900. That's for her." },
+        ]},
+    ]
+  },
 // ── end CUSTOMERS ──
 ];
 
