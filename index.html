@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lot Lizard — Used Car Salesman</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- ═══════════ TITLE ═══════════ -->
+<div class="screen active" id="screen-title">
+  <div class="title-bg">
+    <div class="pennants" id="pennant-strip"></div>
+    <div class="road-stripe"></div>
+  </div>
+  <div class="title-content">
+    <div class="title-eyebrow">A Game of Questionable Integrity</div>
+    <div class="title-logo">LOT<span>★</span>LIZARD</div>
+    <div class="title-sub">Used Car Salesman Simulator</div>
+    <div class="title-tagline">
+      "Where every car has a story.<br>
+      <em>Some of them are even true.</em>"
+    </div>
+    <div class="title-buttons">
+      <button class="btn-start"    id="btn-new-game"      onclick="startNewGame()">OPEN FOR BUSINESS</button>
+      <button class="btn-continue" id="btn-continue-game" onclick="continueGame()" style="display:none">↩ CONTINUE WHERE YOU LEFT OFF</button>
+      <div class="save-indicator"  id="save-indicator"    style="display:none"></div>
+    </div>
+  </div>
+  <div class="title-version">v0.3 — Phase 3</div>
+</div>
+
+<!-- ═══════════ CHARACTER CREATION ═══════════ -->
+<div class="screen" id="screen-create">
+  <div class="create-panel">
+    <div class="create-title">Meet Your Salesman</div>
+    <div class="create-subtitle">
+      You're not just selling cars — you're selling <em>confidence</em>.
+      The cars are optional. The confidence is mandatory.
+    </div>
+    <div class="field-group">
+      <div class="field-label">Your Name</div>
+      <input class="name-input" id="salesman-name" type="text"
+             placeholder="e.g. Crazy Larry, Fast Eddie, Big Al..."
+             maxlength="24" oninput="onNameInput()" />
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Experience Level</div>
+      <div class="difficulty-row">
+        <button class="diff-btn selected" id="diff-rookie"  onclick="selectDifficulty('rookie')">ROOKIE</button>
+        <button class="diff-btn"          id="diff-veteran" onclick="selectDifficulty('veteran')">VETERAN</button>
+      </div>
+      <div class="diff-note" id="diff-note">Archetypes labeled. Car fit shown. Budget visible.</div>
+    </div>
+    <div class="ethics-note">
+      <strong>⚠ A WORD FROM YOUR CONSCIENCE</strong>
+      You're free to play this character as <em>ethically loose</em> as you like.
+      A little creative truth-telling never hurt anyone's commission.
+      The finest line in sales is the one between enthusiasm and outright fiction.
+      Walk it proudly.
+    </div>
+    <button class="btn-primary" id="btn-begin" onclick="beginGame()" disabled>REPORT FOR DUTY</button>
+  </div>
+</div>
+
+
+<!-- ═══════════ TUTORIAL SCREEN ═══════════ -->
+<div class="screen" id="screen-tutorial">
+  <div class="tutorial-outer">
+
+    <div class="tutorial-progress" id="tut-progress">
+      <div class="t-pip active" id="tpip-0"></div>
+      <div class="t-pip"       id="tpip-1"></div>
+      <div class="t-pip"       id="tpip-2"></div>
+      <div class="t-pip"       id="tpip-3"></div>
+      <div class="t-pip"       id="tpip-4"></div>
+    </div>
+
+    <div class="tutorial-card" id="tut-card">
+      <button class="btn-tut-skip" onclick="skipTutorial()">skip</button>
+
+      <span class="tutorial-card-icon" id="tut-icon">🚗</span>
+      <div class="tutorial-card-num"   id="tut-num">Step 1 of 5</div>
+      <div class="tutorial-card-title" id="tut-title">Welcome to the Lot</div>
+      <div class="tutorial-card-body"  id="tut-body"></div>
+      <div class="tutorial-detail"     id="tut-detail"></div>
+
+      <div class="tutorial-nav">
+        <button class="btn-tut-back" id="tut-back" onclick="tutNav(-1)" disabled>← BACK</button>
+        <button class="btn-tut-next" id="tut-next" onclick="tutNav(1)">NEXT →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════ LOT HUB ═══════════ -->
+<div class="screen" id="screen-lot">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="lot-name" id="lot-title">LARRY'S MOTORS</div>
+      <div class="salesman-tag">Proprietor &amp; Chief Enthusiast</div>
+    </div>
+    <div class="topbar-stats">
+      <div class="stat-chip">
+        <div class="stat-chip-label">Day</div>
+        <div class="stat-chip-val day"   id="hud-day">1</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-chip-label">Cash</div>
+        <div class="stat-chip-val money" id="hud-cash">$420</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-chip-label">Reputation</div>
+        <div class="stat-chip-val stars" id="hud-rep">★☆☆☆☆</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="nav-btn"    onclick="openOverlay('overlay-perks')">PERKS</button>
+      <button class="nav-btn"    onclick="openOverlay('overlay-upgrades')">UPGRADES</button>
+      <button class="nav-btn"    onclick="openOverlay('overlay-buy')">BUY CARS</button>
+      <button class="diff-badge" id="hud-difficulty" onclick="toggleDifficulty()" title="Click to toggle difficulty">ROOKIE</button>
+      <button class="reset-link" onclick="showResetModal()">reset game</button>
+      <button id="mute-btn" onclick="toggleMute()" title="Toggle sound" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:2px 4px">🔊</button>
+    </div>
+  </div>
+
+  <div class="lot-main">
+    <div class="lot-left">
+      <div class="lot-scene">
+        <div class="section-label">Your Lot — Day <span id="scene-day">1</span></div>
+        <svg id="lot-svg" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- Drawn by drawLotScene() -->
+        </svg>
+      </div>
+
+      <div class="daily-card">
+        <div class="section-label">TODAY'S CUSTOMER</div>
+        <div class="customer-arrival">
+          <div class="customer-avatar" id="customer-avatar">🧑</div>
+          <div class="customer-info">
+            <h3 id="customer-name">Someone's pulling into the lot...</h3>
+            <p  id="customer-archetype">Unknown — size 'em up</p>
+          </div>
+        </div>
+        <div class="customer-quote" id="customer-quote"><em>"..."</em></div>
+        <button class="btn-engage"  id="btn-engage"   onclick="startDialogue()">⚡ MAKE YOUR MOVE</button>
+        <div class="day-done-banner" id="day-done-banner">
+          <strong id="day-result-headline">Day complete.</strong><br>
+          <span   id="day-result-detail"></span>
+        </div>
+        <button class="btn-next-day" id="btn-next-day" onclick="advanceDay()">☀ NEXT DAY →</button>
+      </div>
+    </div>
+
+    <div class="lot-right">
+      <div class="stat-bars">
+        <div class="section-label">YOUR GAME</div>
+        <div class="stat-bar-row">
+          <div class="stat-bar-name">Charm</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill fill-charm"   id="bar-charm"   style="width:33%"></div></div>
+          <div class="stat-bar-num" id="num-charm">33</div>
+        </div>
+        <div class="stat-bar-row">
+          <div class="stat-bar-name">Honesty</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill fill-honest"  id="bar-honest"  style="width:33%"></div></div>
+          <div class="stat-bar-num" id="num-honest">33</div>
+        </div>
+        <div class="stat-bar-row">
+          <div class="stat-bar-name">Closing</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill fill-closing" id="bar-closing" style="width:33%"></div></div>
+          <div class="stat-bar-num" id="num-closing">33</div>
+        </div>
+      </div>
+
+      <div class="upgrade-list">
+        <div class="section-label">LOT STATUS</div>
+        <div id="lot-status-list"><!-- populated by JS --></div>
+      </div>
+
+      <div>
+        <div class="section-label" id="inventory-label">INVENTORY</div>
+        <div class="inventory-grid" id="inventory-grid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ DIALOGUE SCREEN ═══════════ -->
+<div class="screen" id="screen-dialogue">
+  <div class="dialogue-layout">
+    <div class="dialogue-left">
+      <div class="dlg-scene-header">
+        <div class="dlg-scene-title">THE LOT</div>
+        <div class="dlg-round-badge" id="dlg-round-label">Round 1 of 3</div>
+      </div>
+      <div class="dlg-customer-portrait">
+        <div class="dlg-avatar-big"   id="dlg-avatar">😎</div>
+        <div class="dlg-customer-name" id="dlg-cust-name">Kevin</div>
+        <div class="dlg-archetype-tag" id="dlg-archetype">The Overconfident Teen</div>
+      </div>
+      <div class="dlg-mood">
+        <div class="dlg-mood-label">Customer Mood</div>
+        <div class="dlg-mood-track">
+          <div class="dlg-mood-fill high" id="dlg-mood-fill" style="width:60%"></div>
+        </div>
+      </div>
+      <div class="dlg-car-panel">
+        <div class="dlg-car-label" id="dlg-car-label">Car You're Pitching</div>
+        <select class="dlg-car-select" id="dlg-car-select" onchange="onCarSelect()">
+          <option value="">— pick a car —</option>
+        </select>
+        <div class="dlg-car-req-note" id="dlg-car-req-note">⚠ Pick a car before you pitch</div>
+        <div class="dlg-car-rep-text" id="dlg-car-rep"></div>
+      </div>
+    </div>
+
+    <div class="dialogue-right">
+      <div class="dlg-speech-area" id="dlg-speech-area"></div>
+      <div class="dlg-choices" id="dlg-choices">
+        <div class="dlg-choices-label">YOUR MOVE</div>
+        <div id="dlg-choice-btns"></div>
+        <button class="dlg-back-btn" id="dlg-back-btn" onclick="leaveDialogue()">← BACK TO LOT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ═══════════ PERK TREE OVERLAY ═══════════ -->
+<div class="overlay" id="overlay-perks">
+  <div class="perk-panel">
+    <div class="overlay-header">
+      <div class="overlay-title" style="color:var(--purple)">Perk Tree</div>
+      <div class="perk-pip-track" id="perk-pip-track"></div>
+      <button class="overlay-close" onclick="closeOverlay('overlay-perks')">✕ CLOSE</button>
+    </div>
+    <div class="perk-meta-bar">
+      <div class="perk-meta-item">
+        <div class="perk-meta-label">Perk Points</div>
+        <div class="perk-meta-val pts" id="perk-pts-display">0</div>
+      </div>
+      <div class="perk-meta-item">
+        <div class="perk-meta-label">Lifetime Cap</div>
+        <div class="perk-meta-val cap" id="perk-cap-display">/ 12</div>
+      </div>
+      <div class="perk-meta-item">
+        <div class="perk-meta-label">Points Spent</div>
+        <div class="perk-meta-val" id="perk-spent-display">0</div>
+      </div>
+      <div class="perk-meta-note" id="perk-meta-note">
+        You cannot master all branches.<br>Choose your style.
+      </div>
+    </div>
+    <div class="perk-tree-body" id="perk-tree-body">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════ BUY CARS OVERLAY ═══════════ -->
+<div class="overlay" id="overlay-buy">
+  <div class="buy-panel">
+    <div class="overlay-header">
+      <div class="overlay-title" style="color:var(--blue)">Buy Cars</div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
+        <div class="overlay-cash" id="buy-cash-display">$0</div>
+        <div style="font-size:10px;color:var(--text-dim);font-family:'Oswald',sans-serif;letter-spacing:1px;">YOUR CASH</div>
+      </div>
+      <button class="overlay-close" onclick="closeOverlay('overlay-buy')">✕ CLOSE</button>
+    </div>
+    <div class="buy-scroll" id="buy-cars-container">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ UPGRADE OVERLAY ═══════════ -->
+<div class="overlay" id="overlay-upgrades">
+  <div class="upgrade-panel">
+    <div class="overlay-header">
+      <div class="overlay-title">Lot Upgrades</div>
+      <div class="overlay-cash" id="upg-cash-display">$0</div>
+      <button class="overlay-close" onclick="closeOverlay('overlay-upgrades')">✕ CLOSE</button>
+    </div>
+    <div class="upgrade-scroll" id="upgrade-cards-container">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ END-OF-DAY OVERLAY ═══════════ -->
+<div class="overlay" id="overlay-eod">
+  <div class="eod-panel">
+    <button class="eod-close-btn" onclick="closeOverlay('overlay-eod')" title="Return to dialogue">✕</button>
+    <div class="eod-outcome-banner" id="eod-banner">DAY DONE</div>
+    <div class="eod-subtitle"      id="eod-subtitle"></div>
+    <div class="eod-stat-row">
+      <div class="eod-stat-label">Commission</div>
+      <div class="eod-stat-val positive" id="eod-commission">$0</div>
+    </div>
+    <div class="eod-stat-row">
+      <div class="eod-stat-label">Running Total</div>
+      <div class="eod-stat-val" id="eod-total">$0</div>
+    </div>
+    <div class="eod-stat-row">
+      <div class="eod-stat-label">Reputation</div>
+      <div class="eod-stat-val" id="eod-rep">★☆☆☆☆</div>
+    </div>
+    <div class="eod-shift-row">
+      <div class="eod-shift-chip">
+        <div class="eod-shift-chip-label">Charm</div>
+        <div class="eod-shift-chip-val" id="eod-charm-shift">—</div>
+      </div>
+      <div class="eod-shift-chip">
+        <div class="eod-shift-chip-label">Honesty</div>
+        <div class="eod-shift-chip-val" id="eod-honest-shift">—</div>
+      </div>
+      <div class="eod-shift-chip">
+        <div class="eod-shift-chip-label">Closing</div>
+        <div class="eod-shift-chip-val" id="eod-closing-shift">—</div>
+      </div>
+    </div>
+    <div class="eod-buttons">
+      <button class="btn-eod-upgrade" onclick="openUpgradesFromEod()">⬆ UPGRADES</button>
+      <button class="btn-eod-next"    onclick="eodNextDay()">☀ NEXT DAY →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ WIN OVERLAY ═══════════ -->
+<div class="overlay" id="overlay-win">
+  <div class="win-panel">
+    <div class="win-trophy">🏆</div>
+    <div class="win-title">YOU DID IT</div>
+    <div class="win-sub">Fully Upgraded Lot</div>
+    <div class="win-body" id="win-body"></div>
+    <div class="win-stats">
+      <div class="win-stat">
+        <div class="win-stat-label">Days</div>
+        <div class="win-stat-val" id="win-days">—</div>
+      </div>
+      <div class="win-stat">
+        <div class="win-stat-label">Total Earned</div>
+        <div class="win-stat-val" id="win-cash">—</div>
+      </div>
+      <div class="win-stat">
+        <div class="win-stat-label">Reputation</div>
+        <div class="win-stat-val" id="win-rep">—</div>
+      </div>
+    </div>
+    <button class="btn-win-restart" onclick="winReset()">PLAY AGAIN</button>
+  </div>
+</div>
+
+<!-- ═══════════ RESET MODAL ═══════════ -->
+<div class="modal-overlay" id="reset-modal">
+  <div class="modal-box">
+    <div class="modal-title">Start Over?</div>
+    <div class="modal-body">
+      This will <em>permanently wipe</em> your saved game. Your lot, your reputation,
+      your questionable life choices — all gone. You'll start fresh as a nobody
+      with $420 and a prayer.
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-confirm-reset" onclick="confirmReset()">BURN IT DOWN</button>
+      <button class="btn-cancel-reset"  onclick="hideResetModal()">NEVER MIND</button>
+    </div>
+  </div>
+</div>
+
+<div class="save-flash" id="save-flash">GAME SAVED</div>
+
+<script src="js/game.js"></script>
+</body>
+</html>
